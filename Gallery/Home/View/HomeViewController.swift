@@ -15,7 +15,7 @@ final class HomeViewController: UITabBarController {
     // MARK: Initializer
     init(with viewModel: HomeViewModelProtocol) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: Bundle(for: HomeViewController.self))
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -25,8 +25,18 @@ final class HomeViewController: UITabBarController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTabs()
     }
 
     // MARK: Methods
-    private func configureTabs() { }
+    private func configureTabs() {
+        tabBar.backgroundColor = .black.withAlphaComponent(0.4)
+        tabBar.tintColor = .white
+
+        let tabs: [TabItemType] = [.list, .favorites]
+        viewControllers = tabs.map { $0.viewController }
+        for (index, type) in tabs.enumerated() {
+            viewControllers?[index].tabBarItem = .init(type: type)
+        }
+    }
 }

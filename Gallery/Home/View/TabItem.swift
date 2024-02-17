@@ -9,22 +9,54 @@ import UIKit
 
 extension UITabBarItem {
 
-    public enum Style: Int {
+    convenience init(type: TabItemType) {
 
-        case list
-        case favorites
-        case myList
+        self.init(title: type.title, image: UIImage(named: type.image), tag: type.tag)
     }
+}
 
-    public var imageName: String {
+enum TabItemType {
+
+    case list
+    case favorites
+
+    public var image: String {
 
         switch self {
         case .list:
-            return ""
+            return Images.home
         case .favorites:
-            return ""
-        case .myList:
-            return ""
+            return Images.check
+        }
+    }
+
+    public var title: String {
+
+        switch self {
+        case .list:
+            return String(localized: String.LocalizationValue(TranslationKeys.home))
+        case .favorites:
+            return String(localized: String.LocalizationValue(TranslationKeys.favorites))
+        }
+    }
+
+    public var tag: Int {
+
+        switch self {
+        case .list:
+            return 0
+        case .favorites:
+            return 1
+        }
+    }
+
+    public var viewController: UIViewController {
+
+        switch self {
+        case .list:
+            return ListViewController()
+        case .favorites:
+            return FavoritesViewController()
         }
     }
 }

@@ -5,7 +5,5 @@
 //  Created by Laryssa Castagnoli on 15/02/24.
 //
 
-protocol HomeViewModelProtocol {
-
-}
+protocol HomeViewModelProtocol {}
 final class HomeViewModel: HomeViewModelProtocol {}
