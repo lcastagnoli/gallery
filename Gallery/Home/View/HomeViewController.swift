@@ -9,6 +9,11 @@ import UIKit
 
 final class HomeViewController: UITabBarController {
 
+    // MARK: Constants
+    private enum Constants {
+        static let alpha = 0.4
+    }
+
     // MARK: Properties
     private let viewModel: HomeViewModelProtocol
 
@@ -26,16 +31,16 @@ final class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabs()
+        viewModel.startGuestSession()
     }
 
     // MARK: Methods
     private func configureTabs() {
-        tabBar.backgroundColor = .black.withAlphaComponent(0.4)
+        tabBar.backgroundColor = .black.withAlphaComponent(Constants.alpha)
         tabBar.tintColor = .white
 
-        let tabs: [TabItemType] = [.list, .favorites]
-        viewControllers = tabs.map { $0.viewController }
-        for (index, type) in tabs.enumerated() {
+        viewControllers = viewModel.tabs.map { $0.viewController }
+        for (index, type) in viewModel.tabs.enumerated() {
             viewControllers?[index].tabBarItem = .init(type: type)
         }
     }

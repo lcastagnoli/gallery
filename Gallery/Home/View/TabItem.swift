@@ -7,20 +7,12 @@
 
 import UIKit
 
-extension UITabBarItem {
-
-    convenience init(type: TabItemType) {
-
-        self.init(title: type.title, image: UIImage(named: type.image), tag: type.tag)
-    }
-}
-
 enum TabItemType {
 
     case list
     case favorites
 
-    public var image: String {
+    var image: String {
 
         switch self {
         case .list:
@@ -30,17 +22,17 @@ enum TabItemType {
         }
     }
 
-    public var title: String {
+    var title: String {
 
         switch self {
         case .list:
-            return String(localized: String.LocalizationValue(TranslationKeys.home))
+            return TranslationKeys.home.localized
         case .favorites:
-            return String(localized: String.LocalizationValue(TranslationKeys.favorites))
+            return TranslationKeys.favorites.localized
         }
     }
 
-    public var tag: Int {
+    var tag: Int {
 
         switch self {
         case .list:
@@ -50,13 +42,13 @@ enum TabItemType {
         }
     }
 
-    public var viewController: UIViewController {
+    var viewController: UIViewController {
 
         switch self {
         case .list:
-            return ListViewController()
+            return UINavigationController(rootViewController: ListViewController())
         case .favorites:
-            return FavoritesViewController()
+            return UINavigationController(rootViewController: FavoritesViewController())
         }
     }
 }
