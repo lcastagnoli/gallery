@@ -1,5 +1,5 @@
 //
-//  HomeRepository.swift
+//  SplashRepository.swift
 //  Gallery
 //
 //  Created by Laryssa Castagnoli on 19/02/24.
@@ -8,25 +8,25 @@
 import Combine
 import GalleryNetwork
 
-protocol HomeRepositoryProtocol {
+protocol SplashRepositoryProtocol {
 
     func startGuestSession() -> AnyPublisher<Guest, Error>
 }
 
-final class HomeRepository {
+final class SplashRepository {
 
     // MARK: Properties
-    private let service: HomeServiceProtocol
+    private let service: SplashServiceProtocol
 
     // MARK: Initializers
-    init(service: HomeServiceProtocol) {
+    init(service: SplashServiceProtocol) {
 
         self.service = service
     }
 }
 
 // MARK: - HomeRepositoryProtocol
-extension HomeRepository: HomeRepositoryProtocol {
+extension SplashRepository: SplashRepositoryProtocol {
 
     func startGuestSession() -> AnyPublisher<Guest, Error> {
 
