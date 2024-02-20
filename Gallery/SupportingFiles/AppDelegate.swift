@@ -15,11 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = SplashViewController(viewModel: SplashViewModel(repository: SplashRepository(service: SplashService(client: APIClient(session: URLSession.shared)))))
-//        HomeViewController(with: HomeViewModel(repository: HomeRepository(service: HomeService(client: APIClient(session: URLSession.shared)))))
-        window?.makeKeyAndVisible()
 
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.backgroundColor = .white
+        let coordinator = AppCoordinator(window: window)
+        coordinator.start()
+        self.window = window
         return true
     }
 }

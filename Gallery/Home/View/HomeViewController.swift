@@ -30,17 +30,8 @@ final class HomeViewController: UITabBarController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTabs()
-    }
 
-    // MARK: Methods
-    private func configureTabs() {
         tabBar.backgroundColor = .black.withAlphaComponent(Constants.alpha)
         tabBar.tintColor = .white
-
-        viewControllers = viewModel.tabs.map { $0.viewController }
-        for (index, type) in viewModel.tabs.enumerated() {
-            viewControllers?[index].tabBarItem = .init(type: type)
-        }
     }
 }

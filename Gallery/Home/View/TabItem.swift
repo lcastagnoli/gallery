@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GalleryNavigation
 
 enum TabItemType {
 
@@ -42,13 +43,15 @@ enum TabItemType {
         }
     }
 
-    var viewController: UIViewController {
+    var coordinator: Presentable {
 
         switch self {
         case .list:
-            return UINavigationController(rootViewController: ListViewController())
+            let navigation = UINavigationController()
+            return ListCoordinator(navigation: navigation)
         case .favorites:
-            return UINavigationController(rootViewController: FavoritesViewController())
+            let navigation = UINavigationController()
+            return FavoritesCoordinator(navigation: navigation)
         }
     }
 }

@@ -23,6 +23,11 @@
 		488A10682B84E99F00FEE3FB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10672B84E99F00FEE3FB /* UIView+Extension.swift */; };
 		488A106A2B84F80800FEE3FB /* GalleryNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 488A10692B84F80800FEE3FB /* GalleryNetwork */; };
 		488A106C2B84F80B00FEE3FB /* GalleryUI in Frameworks */ = {isa = PBXBuildFile; productRef = 488A106B2B84F80B00FEE3FB /* GalleryUI */; };
+		488A106F2B8523D900FEE3FB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A106E2B8523D900FEE3FB /* AppCoordinator.swift */; };
+		488A10712B8523F600FEE3FB /* GalleryNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 488A10702B8523F600FEE3FB /* GalleryNavigation */; };
+		488A10732B8528A800FEE3FB /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10722B8528A800FEE3FB /* HomeCoordinator.swift */; };
+		488A10752B8529AA00FEE3FB /* ListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10742B8529AA00FEE3FB /* ListCoordinator.swift */; };
+		488A10772B8529C500FEE3FB /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10762B8529C500FEE3FB /* FavoritesCoordinator.swift */; };
 		48BA8B812B80C23300699267 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA8B802B80C23200699267 /* TabItem.swift */; };
 		48BA8B842B80C7ED00699267 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA8B832B80C7ED00699267 /* Images.swift */; };
 		48BA8B862B80DE4500699267 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 48BA8B852B80DE4500699267 /* Localizable.xcstrings */; };
@@ -62,6 +67,11 @@
 		488A10652B84B23600FEE3FB /* GalleryUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GalleryUI; sourceTree = "<group>"; };
 		488A10662B84B23600FEE3FB /* GalleryNetwork */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GalleryNetwork; sourceTree = "<group>"; };
 		488A10672B84E99F00FEE3FB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		488A106D2B8520DB00FEE3FB /* GalleryNavigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GalleryNavigation; sourceTree = "<group>"; };
+		488A106E2B8523D900FEE3FB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		488A10722B8528A800FEE3FB /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		488A10742B8529AA00FEE3FB /* ListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCoordinator.swift; sourceTree = "<group>"; };
+		488A10762B8529C500FEE3FB /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		48BA8B802B80C23200699267 /* TabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		48BA8B832B80C7ED00699267 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		48BA8B852B80DE4500699267 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -77,6 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				488A106A2B84F80800FEE3FB /* GalleryNetwork in Frameworks */,
+				488A10712B8523F600FEE3FB /* GalleryNavigation in Frameworks */,
 				488A106C2B84F80B00FEE3FB /* GalleryUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,6 +168,7 @@
 				481A5F272B7A785200EA428B /* AppDelegate.swift */,
 				481D545A2B7E824900ABF55C /* Launch Screen.storyboard */,
 				48BA8B852B80DE4500699267 /* Localizable.xcstrings */,
+				488A106E2B8523D900FEE3FB /* AppCoordinator.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -166,6 +178,7 @@
 			children = (
 				481D54622B7E893A00ABF55C /* ViewModel */,
 				481D54612B7E892C00ABF55C /* View */,
+				488A10742B8529AA00FEE3FB /* ListCoordinator.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -175,6 +188,7 @@
 			children = (
 				48BA8B8A2B80F95700699267 /* View */,
 				48BA8B892B80F94F00699267 /* ViewModel */,
+				488A10762B8529C500FEE3FB /* FavoritesCoordinator.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -199,6 +213,7 @@
 		48418FD52B7E78C5008F1D89 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				488A106D2B8520DB00FEE3FB /* GalleryNavigation */,
 				488A10662B84B23600FEE3FB /* GalleryNetwork */,
 				488A10652B84B23600FEE3FB /* GalleryUI */,
 			);
@@ -210,6 +225,7 @@
 			children = (
 				481A5F582B7A787200EA428B /* ViewModel */,
 				481A5F572B7A786B00EA428B /* View */,
+				488A10722B8528A800FEE3FB /* HomeCoordinator.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -303,6 +319,7 @@
 			packageProductDependencies = (
 				488A10692B84F80800FEE3FB /* GalleryNetwork */,
 				488A106B2B84F80B00FEE3FB /* GalleryUI */,
+				488A10702B8523F600FEE3FB /* GalleryNavigation */,
 			);
 			productName = Gallery;
 			productReference = 481A5F242B7A785200EA428B /* Gallery.app */;
@@ -416,12 +433,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				488A10602B84AEE800FEE3FB /* SplashViewModel.swift in Sources */,
+				488A10772B8529C500FEE3FB /* FavoritesCoordinator.swift in Sources */,
 				488A10622B84AEF200FEE3FB /* SplashView.swift in Sources */,
 				488A10542B835FE300FEE3FB /* UITabBarItem+Extension.swift in Sources */,
 				488A10562B839CCF00FEE3FB /* SplashRepository.swift in Sources */,
 				481A5F282B7A785200EA428B /* AppDelegate.swift in Sources */,
 				481D54662B7E895800ABF55C /* ListViewController.swift in Sources */,
+				488A106F2B8523D900FEE3FB /* AppCoordinator.swift in Sources */,
 				48BA8B812B80C23300699267 /* TabItem.swift in Sources */,
+				488A10752B8529AA00FEE3FB /* ListCoordinator.swift in Sources */,
 				488A10682B84E99F00FEE3FB /* UIView+Extension.swift in Sources */,
 				488A105E2B84AED600FEE3FB /* SplashViewController.swift in Sources */,
 				481D54642B7E894A00ABF55C /* ListView.swift in Sources */,
@@ -432,6 +452,7 @@
 				48E705D12B82133400DCC695 /* String+Extension.swift in Sources */,
 				48BA8B882B80DF3900699267 /* TranslationKeys.swift in Sources */,
 				48E705D32B8213C000DCC695 /* ListViewModel.swift in Sources */,
+				488A10732B8528A800FEE3FB /* HomeCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,6 +739,10 @@
 		488A106B2B84F80B00FEE3FB /* GalleryUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GalleryUI;
+		};
+		488A10702B8523F600FEE3FB /* GalleryNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GalleryNavigation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

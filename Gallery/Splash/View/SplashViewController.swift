@@ -16,7 +16,7 @@ final class SplashViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
 
     // MARK: Initializers
-    init(viewModel: SplashViewModelProtocol) {
+    init(with viewModel: SplashViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
