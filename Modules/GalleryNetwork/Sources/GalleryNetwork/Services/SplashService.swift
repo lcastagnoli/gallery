@@ -30,4 +30,3 @@ public final class SplashService: SplashServiceProtocol {
         return client.request(urlRequest).eraseToAnyPublisher()
     }
 }
-

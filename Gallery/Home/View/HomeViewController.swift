@@ -31,7 +31,6 @@ final class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabs()
-        viewModel.startGuestSession()
     }
 
     // MARK: Methods

@@ -39,8 +39,6 @@ extension URLRequestCreator {
         case (.post, let queries):
             request = encode(request: &request, with: queries, and: parameters)
         }
-
-        request = encode(request: &request, with: queries, and: parameters)
         return request
     }
 

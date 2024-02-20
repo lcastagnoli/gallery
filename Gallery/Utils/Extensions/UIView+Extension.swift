@@ -39,7 +39,10 @@ extension UIView {
         ])
     }
 
-    public func constraintsEqualToSuperview(top: CGFloat = .zero, bottom: CGFloat = .zero, leading: CGFloat = .zero, trailing: CGFloat = .zero) {
+    public func constraintsEqualToSuperview(top: CGFloat = .zero,
+                                            bottom: CGFloat = .zero,
+                                            leading: CGFloat = .zero,
+                                            trailing: CGFloat = .zero) {
 
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -51,6 +54,17 @@ extension UIView {
             topAnchor.constraint(equalTo: superview.topAnchor, constant: top),
             leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: leading),
             trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: trailing)
+        ])
+    }
+
+    public func constraints(view: UIView, bottom: CGFloat = .zero) {
+
+        translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+
+            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottom),
+            centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 

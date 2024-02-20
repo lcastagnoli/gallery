@@ -21,6 +21,8 @@
 		488A10602B84AEE800FEE3FB /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A105F2B84AEE800FEE3FB /* SplashViewModel.swift */; };
 		488A10622B84AEF200FEE3FB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10612B84AEF200FEE3FB /* SplashView.swift */; };
 		488A10682B84E99F00FEE3FB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10672B84E99F00FEE3FB /* UIView+Extension.swift */; };
+		488A106A2B84F80800FEE3FB /* GalleryNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 488A10692B84F80800FEE3FB /* GalleryNetwork */; };
+		488A106C2B84F80B00FEE3FB /* GalleryUI in Frameworks */ = {isa = PBXBuildFile; productRef = 488A106B2B84F80B00FEE3FB /* GalleryUI */; };
 		48BA8B812B80C23300699267 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA8B802B80C23200699267 /* TabItem.swift */; };
 		48BA8B842B80C7ED00699267 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA8B832B80C7ED00699267 /* Images.swift */; };
 		48BA8B862B80DE4500699267 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 48BA8B852B80DE4500699267 /* Localizable.xcstrings */; };
@@ -74,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488A106A2B84F80800FEE3FB /* GalleryNetwork in Frameworks */,
+				488A106C2B84F80B00FEE3FB /* GalleryUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +301,8 @@
 			);
 			name = Gallery;
 			packageProductDependencies = (
+				488A10692B84F80800FEE3FB /* GalleryNetwork */,
+				488A106B2B84F80B00FEE3FB /* GalleryUI */,
 			);
 			productName = Gallery;
 			productReference = 481A5F242B7A785200EA428B /* Gallery.app */;
@@ -703,6 +709,17 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		488A10692B84F80800FEE3FB /* GalleryNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GalleryNetwork;
+		};
+		488A106B2B84F80B00FEE3FB /* GalleryUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GalleryUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 481A5F1C2B7A785200EA428B /* Project object */;
 }

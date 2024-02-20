@@ -8,19 +8,20 @@
 import UIKit
 
 final class SplashView: UIView {
-    
+
+    // MARK: Constants
+    private enum Constants {
+        static let bottomConstraint = -20.0
+    }
+
     // MARK: Properties
     private var backgroundImage = UIImageView()
     private var loader = UIActivityIndicatorView(style: .medium)
-    private var imageNamed: String
-    
+
     // MARK: Initializers
-    init(imageNamed: String) {
-
-        self.imageNamed = imageNamed
-        super.init(frame: .zero)
-
-        self.configureView()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
     }
 
     required init?(coder: NSCoder) {
@@ -28,20 +29,45 @@ final class SplashView: UIView {
     }
 
     // MARK: Methods
-    private func configureView() {
-        
-        backgroundImage.image = UIImage(named: imageNamed)
+    private func setupViews() {
+        backgroundImage.contentMode = .scaleAspectFill
+        loader.color = .white
         addSubview(backgroundImage)
-        backgroundImage.constraintsEqualToSuperview()
         addSubview(loader)
-        loader.constraintsAlignedCenterInSuperview()
+        configureConstraints()
     }
-    
-    public func startLoading() {
-        loader.startAnimating()
+
+    private func configureConstraints() {
+        backgroundImage.constraintsEqualToSuperview()
+        loader.translatesAutoresizingMaskIntoConstraints = false
+        let constrants = [NSLayoutConstraint(item: loader,
+                                                  attribute: .centerXWithinMargins,
+                                                  relatedBy: .equal,
+                                                  toItem: self,
+                                                  attribute: .centerXWithinMargins,
+                                                  multiplier: 1,
+                                                  constant: .zero),
+                               NSLayoutConstraint(item: loader,
+                                                  attribute: .bottomMargin,
+                                                  relatedBy: .equal,
+                                                  toItem: self,
+                                                  attribute: .bottomMargin,
+                                                  multiplier: 1,
+                                                  constant: Constants.bottomConstraint)]
+        NSLayoutConstraint.activate(constrants)
     }
-    
-    public func stopLoading() {
-        loader.stopAnimating()
+
+    func configureView(with imageNamed: String) {
+
+        backgroundImage.image = UIImage(named: imageNamed)
+    }
+
+    public func loading(animated: Bool) {
+        switch animated {
+        case true:
+            loader.startAnimating()
+        case false:
+            loader.stopAnimating()
+        }
     }
 }

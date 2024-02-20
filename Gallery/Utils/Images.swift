@@ -12,4 +12,5 @@ enum Images {
     static let play = "play"
     static let star = "star"
     static let home = "home"
+    static let splash = "LaunchScreen"
 }
