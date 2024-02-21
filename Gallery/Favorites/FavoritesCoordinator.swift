@@ -5,7 +5,7 @@
 //  Created by Laryssa Castagnoli on 20/02/24.
 //
 
-import GalleryNavigation
+import Navigation
 import UIKit
 
 final class FavoritesCoordinator: NavigationRoutable {

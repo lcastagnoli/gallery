@@ -21,13 +21,15 @@
 		488A10602B84AEE800FEE3FB /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A105F2B84AEE800FEE3FB /* SplashViewModel.swift */; };
 		488A10622B84AEF200FEE3FB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10612B84AEF200FEE3FB /* SplashView.swift */; };
 		488A10682B84E99F00FEE3FB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10672B84E99F00FEE3FB /* UIView+Extension.swift */; };
-		488A106A2B84F80800FEE3FB /* GalleryNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 488A10692B84F80800FEE3FB /* GalleryNetwork */; };
-		488A106C2B84F80B00FEE3FB /* GalleryUI in Frameworks */ = {isa = PBXBuildFile; productRef = 488A106B2B84F80B00FEE3FB /* GalleryUI */; };
 		488A106F2B8523D900FEE3FB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A106E2B8523D900FEE3FB /* AppCoordinator.swift */; };
-		488A10712B8523F600FEE3FB /* GalleryNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 488A10702B8523F600FEE3FB /* GalleryNavigation */; };
 		488A10732B8528A800FEE3FB /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10722B8528A800FEE3FB /* HomeCoordinator.swift */; };
 		488A10752B8529AA00FEE3FB /* ListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10742B8529AA00FEE3FB /* ListCoordinator.swift */; };
 		488A10772B8529C500FEE3FB /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10762B8529C500FEE3FB /* FavoritesCoordinator.swift */; };
+		488A10792B85FF3600FEE3FB /* Navigation in Frameworks */ = {isa = PBXBuildFile; productRef = 488A10782B85FF3600FEE3FB /* Navigation */; };
+		488A107B2B85FF6900FEE3FB /* UI in Frameworks */ = {isa = PBXBuildFile; productRef = 488A107A2B85FF6900FEE3FB /* UI */; };
+		488A107D2B85FF6F00FEE3FB /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 488A107C2B85FF6F00FEE3FB /* Network */; };
+		488A10832B8604D500FEE3FB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488A10822B8604D500FEE3FB /* Security.framework */; };
+		488A10852B86103500FEE3FB /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = 488A10842B86103500FEE3FB /* Persistence */; };
 		48BA8B812B80C23300699267 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA8B802B80C23200699267 /* TabItem.swift */; };
 		48BA8B842B80C7ED00699267 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA8B832B80C7ED00699267 /* Images.swift */; };
 		48BA8B862B80DE4500699267 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 48BA8B852B80DE4500699267 /* Localizable.xcstrings */; };
@@ -64,14 +66,16 @@
 		488A105D2B84AED600FEE3FB /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		488A105F2B84AEE800FEE3FB /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		488A10612B84AEF200FEE3FB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		488A10652B84B23600FEE3FB /* GalleryUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GalleryUI; sourceTree = "<group>"; };
-		488A10662B84B23600FEE3FB /* GalleryNetwork */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GalleryNetwork; sourceTree = "<group>"; };
 		488A10672B84E99F00FEE3FB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		488A106D2B8520DB00FEE3FB /* GalleryNavigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GalleryNavigation; sourceTree = "<group>"; };
 		488A106E2B8523D900FEE3FB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		488A10722B8528A800FEE3FB /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		488A10742B8529AA00FEE3FB /* ListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCoordinator.swift; sourceTree = "<group>"; };
 		488A10762B8529C500FEE3FB /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
+		488A107E2B85FFB400FEE3FB /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
+		488A107F2B85FFB400FEE3FB /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
+		488A10802B85FFB400FEE3FB /* UI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UI; sourceTree = "<group>"; };
+		488A10812B86001200FEE3FB /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
+		488A10822B8604D500FEE3FB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		48BA8B802B80C23200699267 /* TabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		48BA8B832B80C7ED00699267 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		48BA8B852B80DE4500699267 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -86,9 +90,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				488A106A2B84F80800FEE3FB /* GalleryNetwork in Frameworks */,
-				488A10712B8523F600FEE3FB /* GalleryNavigation in Frameworks */,
-				488A106C2B84F80B00FEE3FB /* GalleryUI in Frameworks */,
+				488A107D2B85FF6F00FEE3FB /* Network in Frameworks */,
+				488A10852B86103500FEE3FB /* Persistence in Frameworks */,
+				488A107B2B85FF6900FEE3FB /* UI in Frameworks */,
+				488A10832B8604D500FEE3FB /* Security.framework in Frameworks */,
+				488A10792B85FF3600FEE3FB /* Navigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,9 +219,10 @@
 		48418FD52B7E78C5008F1D89 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				488A106D2B8520DB00FEE3FB /* GalleryNavigation */,
-				488A10662B84B23600FEE3FB /* GalleryNetwork */,
-				488A10652B84B23600FEE3FB /* GalleryUI */,
+				488A10812B86001200FEE3FB /* Persistence */,
+				488A107E2B85FFB400FEE3FB /* Navigation */,
+				488A107F2B85FFB400FEE3FB /* Network */,
+				488A10802B85FFB400FEE3FB /* UI */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -233,6 +240,7 @@
 		488A10572B83A1AA00FEE3FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				488A10822B8604D500FEE3FB /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -317,9 +325,10 @@
 			);
 			name = Gallery;
 			packageProductDependencies = (
-				488A10692B84F80800FEE3FB /* GalleryNetwork */,
-				488A106B2B84F80B00FEE3FB /* GalleryUI */,
-				488A10702B8523F600FEE3FB /* GalleryNavigation */,
+				488A10782B85FF3600FEE3FB /* Navigation */,
+				488A107A2B85FF6900FEE3FB /* UI */,
+				488A107C2B85FF6F00FEE3FB /* Network */,
+				488A10842B86103500FEE3FB /* Persistence */,
 			);
 			productName = Gallery;
 			productReference = 481A5F242B7A785200EA428B /* Gallery.app */;
@@ -732,17 +741,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		488A10692B84F80800FEE3FB /* GalleryNetwork */ = {
+		488A10782B85FF3600FEE3FB /* Navigation */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = GalleryNetwork;
+			productName = Navigation;
 		};
-		488A106B2B84F80B00FEE3FB /* GalleryUI */ = {
+		488A107A2B85FF6900FEE3FB /* UI */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = GalleryUI;
+			productName = UI;
 		};
-		488A10702B8523F600FEE3FB /* GalleryNavigation */ = {
+		488A107C2B85FF6F00FEE3FB /* Network */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = GalleryNavigation;
+			productName = Network;
+		};
+		488A10842B86103500FEE3FB /* Persistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Persistence;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

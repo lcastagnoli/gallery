@@ -30,7 +30,8 @@ final class SplashView: UIView {
 
     // MARK: Methods
     private func setupViews() {
-        backgroundImage.contentMode = .scaleAspectFill
+        backgroundColor = .black
+        backgroundImage.contentMode = .scaleAspectFit
         loader.color = .white
         addSubview(backgroundImage)
         addSubview(loader)

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import GalleryNavigation
+import Navigation
 
 enum TabItemType {
 

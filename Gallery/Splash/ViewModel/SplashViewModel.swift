@@ -6,7 +6,7 @@
 //
 
 import Combine
-import GalleryNetwork
+import Network
 import Foundation
 
 protocol SplashNavigationDelegate: AnyObject {
@@ -61,6 +61,7 @@ extension SplashViewModel: SplashViewModelProtocol {
                 }
             }, receiveValue: { [weak self] session in
                 self?.loading = false
+                self?.dependencies.repository.save(session: session.guestSessionId)
                 self?.dependencies.navigation?.splash(didFinish: .success)
             })
             .store(in: &cancellables)

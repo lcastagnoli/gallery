@@ -6,7 +6,7 @@
 //
 
 import Combine
-import GalleryNetwork
+import Network
 import Foundation
 
 protocol HomeViewModelProtocol {

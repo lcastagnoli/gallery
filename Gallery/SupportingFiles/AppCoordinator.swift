@@ -6,9 +6,10 @@
 //
 
 import Foundation
-import GalleryNavigation
+import Navigation
 import UIKit
-import GalleryNetwork
+import Network
+import Persistence
 
 final class AppCoordinator: WindowRoutable {
 
@@ -35,7 +36,8 @@ extension AppCoordinator: Coordinator {
 
         let client = APIClient(session: URLSession.shared)
         let service = SplashService(client: client)
-        let repository = SplashRepository(service: service)
+        let security = Security()
+        let repository = SplashRepository(service: service, security: security)
         let dependencies = SplashViewModel.Dependencies(navigation: self, repository: repository)
         let viewModel = SplashViewModel(dependencies: dependencies)
         let viewController = SplashViewController(with: viewModel)

@@ -6,12 +6,13 @@
 //
 
 import UIKit
-import GalleryNetwork
+import Network
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var coordinator: AppCoordinator?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.backgroundColor = .white
         let coordinator = AppCoordinator(window: window)
         coordinator.start()
+        self.coordinator = coordinator
         self.window = window
         return true
     }

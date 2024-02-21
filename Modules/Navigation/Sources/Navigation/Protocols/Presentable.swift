@@ -1,6 +1,6 @@
 //
 //  Presentable.swift
-//  
+//
 //
 //  Created by Laryssa Castagnoli on 20/02/24.
 //
@@ -16,4 +16,3 @@ extension UINavigationController: Presentable {
 
     public var root: UIViewController { self }
 }
-

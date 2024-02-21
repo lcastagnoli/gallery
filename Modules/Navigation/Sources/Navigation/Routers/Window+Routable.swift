@@ -66,4 +66,3 @@ extension WindowRoutable {
         coordinator.root.dismiss(animated: animated)
     }
 }
-
