@@ -35,7 +35,7 @@ extension AppCoordinator: Coordinator {
     private func openSplash() {
 
         let client = APIClient(session: URLSession.shared)
-        let service = SplashService(client: client)
+        let service = AuthenticationService(client: client)
         let security = Security()
         let repository = SplashRepository(service: service, security: security)
         let dependencies = SplashViewModel.Dependencies(navigation: self, repository: repository)

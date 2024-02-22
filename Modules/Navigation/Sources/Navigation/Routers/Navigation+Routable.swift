@@ -61,4 +61,3 @@ extension NavigationRoutable where Self: UINavigationControllerDelegate {
         completions[fromViewController]?()
     }
 }
-

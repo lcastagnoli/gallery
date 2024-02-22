@@ -20,7 +20,6 @@
 		488A105E2B84AED600FEE3FB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A105D2B84AED600FEE3FB /* SplashViewController.swift */; };
 		488A10602B84AEE800FEE3FB /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A105F2B84AEE800FEE3FB /* SplashViewModel.swift */; };
 		488A10622B84AEF200FEE3FB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10612B84AEF200FEE3FB /* SplashView.swift */; };
-		488A10682B84E99F00FEE3FB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10672B84E99F00FEE3FB /* UIView+Extension.swift */; };
 		488A106F2B8523D900FEE3FB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A106E2B8523D900FEE3FB /* AppCoordinator.swift */; };
 		488A10732B8528A800FEE3FB /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10722B8528A800FEE3FB /* HomeCoordinator.swift */; };
 		488A10752B8529AA00FEE3FB /* ListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10742B8529AA00FEE3FB /* ListCoordinator.swift */; };
@@ -30,6 +29,8 @@
 		488A107D2B85FF6F00FEE3FB /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 488A107C2B85FF6F00FEE3FB /* Network */; };
 		488A10832B8604D500FEE3FB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488A10822B8604D500FEE3FB /* Security.framework */; };
 		488A10852B86103500FEE3FB /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = 488A10842B86103500FEE3FB /* Persistence */; };
+		488A10882B875D5B00FEE3FB /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 488A10872B875D5B00FEE3FB /* SDWebImage */; };
+		488A108A2B87646000FEE3FB /* ListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A10892B87646000FEE3FB /* ListRepository.swift */; };
 		48BA8B812B80C23300699267 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA8B802B80C23200699267 /* TabItem.swift */; };
 		48BA8B842B80C7ED00699267 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA8B832B80C7ED00699267 /* Images.swift */; };
 		48BA8B862B80DE4500699267 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 48BA8B852B80DE4500699267 /* Localizable.xcstrings */; };
@@ -66,7 +67,6 @@
 		488A105D2B84AED600FEE3FB /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		488A105F2B84AEE800FEE3FB /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		488A10612B84AEF200FEE3FB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		488A10672B84E99F00FEE3FB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		488A106E2B8523D900FEE3FB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		488A10722B8528A800FEE3FB /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		488A10742B8529AA00FEE3FB /* ListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCoordinator.swift; sourceTree = "<group>"; };
@@ -76,6 +76,7 @@
 		488A10802B85FFB400FEE3FB /* UI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UI; sourceTree = "<group>"; };
 		488A10812B86001200FEE3FB /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
 		488A10822B8604D500FEE3FB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		488A10892B87646000FEE3FB /* ListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRepository.swift; sourceTree = "<group>"; };
 		48BA8B802B80C23200699267 /* TabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		48BA8B832B80C7ED00699267 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		48BA8B852B80DE4500699267 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488A10882B875D5B00FEE3FB /* SDWebImage in Frameworks */,
 				488A107D2B85FF6F00FEE3FB /* Network in Frameworks */,
 				488A10852B86103500FEE3FB /* Persistence in Frameworks */,
 				488A107B2B85FF6900FEE3FB /* UI in Frameworks */,
@@ -185,6 +187,7 @@
 				481D54622B7E893A00ABF55C /* ViewModel */,
 				481D54612B7E892C00ABF55C /* View */,
 				488A10742B8529AA00FEE3FB /* ListCoordinator.swift */,
+				488A10892B87646000FEE3FB /* ListRepository.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 		488A105C2B84AEBE00FEE3FB /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				488A10552B839CCF00FEE3FB /* SplashRepository.swift */,
 				488A10642B84AEFB00FEE3FB /* ViewModel */,
 				488A10632B84AEF500FEE3FB /* View */,
 			);
@@ -266,7 +270,6 @@
 		488A10642B84AEFB00FEE3FB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				488A10552B839CCF00FEE3FB /* SplashRepository.swift */,
 				488A105F2B84AEE800FEE3FB /* SplashViewModel.swift */,
 			);
 			path = ViewModel;
@@ -302,7 +305,6 @@
 			children = (
 				48E705D02B82133400DCC695 /* String+Extension.swift */,
 				488A10532B835FE300FEE3FB /* UITabBarItem+Extension.swift */,
-				488A10672B84E99F00FEE3FB /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -329,6 +331,7 @@
 				488A107A2B85FF6900FEE3FB /* UI */,
 				488A107C2B85FF6F00FEE3FB /* Network */,
 				488A10842B86103500FEE3FB /* Persistence */,
+				488A10872B875D5B00FEE3FB /* SDWebImage */,
 			);
 			productName = Gallery;
 			productReference = 481A5F242B7A785200EA428B /* Gallery.app */;
@@ -383,6 +386,7 @@
 			mainGroup = 481A5F1B2B7A785200EA428B;
 			packageReferences = (
 				489895382B7E47FE00D2348A /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				488A10862B875D5B00FEE3FB /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 481A5F252B7A785200EA428B /* Products */;
 			projectDirPath = "";
@@ -451,7 +455,6 @@
 				488A106F2B8523D900FEE3FB /* AppCoordinator.swift in Sources */,
 				48BA8B812B80C23300699267 /* TabItem.swift in Sources */,
 				488A10752B8529AA00FEE3FB /* ListCoordinator.swift in Sources */,
-				488A10682B84E99F00FEE3FB /* UIView+Extension.swift in Sources */,
 				488A105E2B84AED600FEE3FB /* SplashViewController.swift in Sources */,
 				481D54642B7E894A00ABF55C /* ListView.swift in Sources */,
 				48BA8B842B80C7ED00699267 /* Images.swift in Sources */,
@@ -461,6 +464,7 @@
 				48E705D12B82133400DCC695 /* String+Extension.swift in Sources */,
 				48BA8B882B80DF3900699267 /* TranslationKeys.swift in Sources */,
 				48E705D32B8213C000DCC695 /* ListViewModel.swift in Sources */,
+				488A108A2B87646000FEE3FB /* ListRepository.swift in Sources */,
 				488A10732B8528A800FEE3FB /* HomeCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -730,6 +734,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		488A10862B875D5B00FEE3FB /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.18.11;
+			};
+		};
 		489895382B7E47FE00D2348A /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint.git";
@@ -756,6 +768,11 @@
 		488A10842B86103500FEE3FB /* Persistence */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Persistence;
+		};
+		488A10872B875D5B00FEE3FB /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 488A10862B875D5B00FEE3FB /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

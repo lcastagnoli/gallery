@@ -1,6 +1,6 @@
 //
-//  SplashService.swift
-//  
+//  AuthenticationService.swift
+//
 //
 //  Created by Laryssa Castagnoli on 20/02/24.
 //
@@ -8,12 +8,12 @@
 import Combine
 import Foundation
 
-public protocol SplashServiceProtocol: ServiceProtocol {
+public protocol AuthenticationServiceProtocol: ServiceProtocol {
 
     func startGuestSession() -> AnyPublisher<Guest, Error>
 }
 
-public final class SplashService: SplashServiceProtocol {
+public final class AuthenticationService: AuthenticationServiceProtocol {
 
     // MARK: Properties
     private let client: APIClientProtocol

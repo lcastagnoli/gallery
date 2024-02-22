@@ -45,7 +45,7 @@ final class SplashViewModel {
     }
 }
 
-// MARK: - HomeViewModelProtocol
+// MARK: - SplashViewModelProtocol
 extension SplashViewModel: SplashViewModelProtocol {
 
     var loadingPublisher: Published<Bool>.Publisher { $loading }

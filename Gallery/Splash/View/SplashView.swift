@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UI
 
 final class SplashView: UIView {
 
@@ -21,17 +22,17 @@ final class SplashView: UIView {
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupViews()
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     // MARK: Methods
     private func setupViews() {
+
         backgroundColor = .black
-        backgroundImage.contentMode = .scaleAspectFit
+        backgroundImage.contentMode = .scaleAspectFill
         loader.color = .white
         addSubview(backgroundImage)
         addSubview(loader)
@@ -39,23 +40,18 @@ final class SplashView: UIView {
     }
 
     private func configureConstraints() {
-        backgroundImage.constraintsEqualToSuperview()
+
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         loader.translatesAutoresizingMaskIntoConstraints = false
-        let constrants = [NSLayoutConstraint(item: loader,
-                                                  attribute: .centerXWithinMargins,
-                                                  relatedBy: .equal,
-                                                  toItem: self,
-                                                  attribute: .centerXWithinMargins,
-                                                  multiplier: 1,
-                                                  constant: .zero),
-                               NSLayoutConstraint(item: loader,
-                                                  attribute: .bottomMargin,
-                                                  relatedBy: .equal,
-                                                  toItem: self,
-                                                  attribute: .bottomMargin,
-                                                  multiplier: 1,
-                                                  constant: Constants.bottomConstraint)]
-        NSLayoutConstraint.activate(constrants)
+        NSLayoutConstraint.activate([
+            loader.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            loader.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,
+                                           constant: Constants.bottomConstraint),
+            backgroundImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
     func configureView(with imageNamed: String) {
@@ -64,6 +60,7 @@ final class SplashView: UIView {
     }
 
     public func loading(animated: Bool) {
+
         switch animated {
         case true:
             loader.startAnimating()

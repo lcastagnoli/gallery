@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum AuthenticationRouter: URLRequestCreator {
 
     case guest
