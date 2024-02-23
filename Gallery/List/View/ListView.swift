@@ -12,15 +12,23 @@ final class ListView: UIView {
 
     // MARK: Constants
     private enum Constants {
-        static let spacing = 20.0
+        static let spacing = 40.0
+        static let heightSection = 170.0
+        static let topInset = 20.0
+        static let bottomInset = 40.0
     }
 
     // MARK: Properties
-    private var loader = UIActivityIndicatorView(style: .medium)
+    lazy var loader: UIActivityIndicatorView = {
+        let loader = UIActivityIndicatorView(style: .medium)
+        loader.color = .white
+        return loader
+    }()
+
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
         stackView.spacing = Constants.spacing
         return stackView
     }()
@@ -29,6 +37,12 @@ final class ListView: UIView {
         let scrollView = UIScrollView()
         scrollView.addSubview(stackView)
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.contentSize = stackView.bounds.size
+        scrollView.bounces = false
+        scrollView.contentInset = UIEdgeInsets(top: Constants.topInset,
+                                               left: .zero,
+                                               bottom: Constants.bottomInset,
+                                               right: .zero)
         return scrollView
     }()
 
@@ -47,10 +61,10 @@ final class ListView: UIView {
         viewModels.forEach { viewModel in
 
             let section = SectionView()
-            section.translatesAutoresizingMaskIntoConstraints = true
             section.setup(with: viewModel)
+            section.translatesAutoresizingMaskIntoConstraints = true
             stackView.addArrangedSubview(section)
-            section.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+            section.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.heightSection).isActive = true
         }
     }
 
@@ -70,7 +84,6 @@ final class ListView: UIView {
     private func setupViews() {
 
         backgroundColor = .black
-        loader.color = .white
         addSubview(scrollView)
         scrollView.addSubview(stackView)
         addSubview(loader)
@@ -88,12 +101,13 @@ final class ListView: UIView {
             scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
 
-            stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
 
             loader.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             loader.centerYAnchor.constraint(equalTo: self.centerYAnchor)

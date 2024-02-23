@@ -10,8 +10,18 @@ import SDWebImage
 
 public final class CardView: UIView {
 
+    // MARK: Constants
+    private enum Constants {
+        static let width = 100.0
+        static let height = 150.0
+    }
+
     // MARK: Properties
-    private var imageView = UIImageView()
+    lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
 
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -25,7 +35,6 @@ public final class CardView: UIView {
 
     // MARK: Methods
     private func setupViews() {
-        imageView.contentMode = .scaleAspectFit
         addSubview(imageView)
         configureConstraints()
     }
@@ -41,7 +50,9 @@ public final class CardView: UIView {
             imageView.topAnchor.constraint(equalTo: self.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: Constants.width),
+            imageView.heightAnchor.constraint(equalToConstant: Constants.height)
         ])
     }
 }

@@ -13,7 +13,7 @@ final class ListViewController: UIViewController {
     // MARK: Properties
     private let viewModel: ListViewModelProtocol
     private let customView = ListView()
-    var cancellables = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: Initializers
     init(with viewModel: ListViewModelProtocol) {
@@ -34,7 +34,8 @@ final class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel.getPopularMovies()
+        navigationItem.title = TranslationKeys.navTitleMovies.localized
+        viewModel.getMovies()
         viewModel.loadingPublisher
             .sink { [weak self] value in
                 self?.customView.loading(animated: value)

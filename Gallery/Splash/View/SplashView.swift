@@ -16,8 +16,16 @@ final class SplashView: UIView {
     }
 
     // MARK: Properties
-    private var backgroundImage = UIImageView()
-    private var loader = UIActivityIndicatorView(style: .medium)
+    lazy var backgroundImage: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    lazy var loader: UIActivityIndicatorView = {
+        let loader = UIActivityIndicatorView(style: .medium)
+        loader.color = .white
+        return loader
+    }()
 
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -32,8 +40,6 @@ final class SplashView: UIView {
     private func setupViews() {
 
         backgroundColor = .black
-        backgroundImage.contentMode = .scaleAspectFill
-        loader.color = .white
         addSubview(backgroundImage)
         addSubview(loader)
         configureConstraints()

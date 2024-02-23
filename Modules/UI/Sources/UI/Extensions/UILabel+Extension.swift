@@ -18,7 +18,7 @@ extension UILabel: Styleable {
 
             switch self {
             case .title:
-                return UIFont.systemFont(ofSize: 16.0)
+                return UIFont.boldSystemFont(ofSize: 16.0)
             }
         }
 

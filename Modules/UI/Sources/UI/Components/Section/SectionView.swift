@@ -10,7 +10,12 @@ import UIKit
 public final class SectionView: UIView {
 
     // MARK: Properties
-    private var titleLabel = UILabel()
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.style(as: .title)
+        return label
+    }()
+
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -58,7 +63,6 @@ public final class SectionView: UIView {
     // MARK: Methods
     private func setupViews() {
 
-        titleLabel.style(as: .title)
         addSubview(stackView)
         configureConstraints()
     }
@@ -68,11 +72,8 @@ public final class SectionView: UIView {
         titleLabel.text = viewModel.title
         viewModel.items.forEach { item in
             let card = CardView()
-            card.translatesAutoresizingMaskIntoConstraints = false
             card.setup(with: CardViewModel(image: item))
             stackViewCards.addArrangedSubview(card)
-            card.widthAnchor.constraint(equalToConstant: Constants.width).isActive = true
-            card.heightAnchor.constraint(equalToConstant: Constants.height).isActive = true
         }
     }
 

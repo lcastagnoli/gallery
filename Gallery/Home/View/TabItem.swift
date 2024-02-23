@@ -47,10 +47,10 @@ enum TabItemType {
 
         switch self {
         case .list:
-            let navigation = UINavigationController()
+            let navigation = UINavigationController(barStyle: .black)
             return ListCoordinator(navigation: navigation)
         case .favorites:
-            let navigation = UINavigationController()
+            let navigation = UINavigationController(barStyle: .black)
             return FavoritesCoordinator(navigation: navigation)
         }
     }
