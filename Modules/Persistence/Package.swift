@@ -20,6 +20,6 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "Persistence",
-            dependencies: [.product(name: "Realm", package: "realm-swift")])
+            dependencies: [.product(name: "RealmSwift", package: "realm-swift")])
     ]
 )

@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Realm
-import RealmSwift
 
 // MARK: - Result
 public class Result: Decodable {
