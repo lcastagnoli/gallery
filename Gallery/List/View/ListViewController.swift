@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import UI
 
 final class ListViewController: UIViewController {
 
@@ -43,8 +44,19 @@ final class ListViewController: UIViewController {
             .store(in: &cancellables)
         viewModel.itemsPublisher
             .sink { [weak self] value in
-                self?.customView.setup(with: value)
+                self?.customView.setup(with: value, delegate: self)
             }
             .store(in: &cancellables)
     }
+}
+
+// MARK: - ListViewDelegate
+extension ListViewController: ListViewDelegate {
+
+    func didSelect(card: CardView, index: Int, section: Int) {
+
+        viewModel.addFavorite(section: section, index: index)
+    }
+
+    func didSelect(section: SectionView, index: Int) { }
 }

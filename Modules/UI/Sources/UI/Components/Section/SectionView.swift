@@ -7,6 +7,12 @@
 
 import UIKit
 
+public protocol SectionViewDelegate: AnyObject {
+
+    func didSelect(card: CardView, index: Int, section: Int)
+    func didSelect(section: SectionView, index: Int)
+}
+
 public final class SectionView: UIView {
 
     // MARK: Properties
@@ -40,7 +46,8 @@ public final class SectionView: UIView {
         return scrollView
     }()
 
-    private var items: [CardView] = []
+    private weak var delegate: SectionViewDelegate?
+    private var viewModel: SectionViewModel?
 
     // MARK: Constants
     private enum Constants {
@@ -67,14 +74,26 @@ public final class SectionView: UIView {
         configureConstraints()
     }
 
-    public func setup(with viewModel: SectionViewModel) {
+    public func setup(with viewModel: SectionViewModel, delegate: SectionViewDelegate?) {
 
+        self.viewModel = viewModel
+        self.delegate = delegate
         titleLabel.text = viewModel.title
-        viewModel.items.forEach { item in
-            let card = CardView()
-            card.setup(with: CardViewModel(image: item))
-            stackViewCards.addArrangedSubview(card)
+
+        for item in viewModel.items {
+            createCard(with: item)
         }
+    }
+
+    private func createCard(with viewModel: CardViewModel?) {
+
+        guard let viewModel else { return }
+        let card = CardView()
+        card.translatesAutoresizingMaskIntoConstraints = false
+        card.setup(with: viewModel, delegate: self)
+        card.widthAnchor.constraint(equalToConstant: Constants.width).isActive = true
+        card.heightAnchor.constraint(equalToConstant: Constants.height).isActive = true
+        stackViewCards.addArrangedSubview(card)
     }
 
     private func configureConstraints() {
@@ -94,5 +113,15 @@ public final class SectionView: UIView {
             stackViewCards.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackViewCards.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
+    }
+}
+
+// MARK: - CardViewDelegate
+extension SectionView: CardViewDelegate {
+
+    public func didSelect(view: CardView, index: Int) {
+
+        guard let section = viewModel?.index else { return }
+        delegate?.didSelect(card: view, index: index, section: section)
     }
 }

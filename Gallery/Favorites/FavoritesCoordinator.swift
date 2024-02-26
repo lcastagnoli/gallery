@@ -6,6 +6,7 @@
 //
 
 import Navigation
+import Persistence
 import UIKit
 
 final class FavoritesCoordinator: NavigationRoutable {
@@ -15,7 +16,8 @@ final class FavoritesCoordinator: NavigationRoutable {
     var completions: [UIViewController: (() -> Void)] = [:]
 
     private lazy var favoritesViewController: FavoritesViewController = {
-        return FavoritesViewController()
+        let dependencies = FavoritesViewModel.Dependencies(persistence: PersistenceManager())
+        return FavoritesViewController(with: FavoritesViewModel(dependencies: dependencies))
     }()
 
     // MARK: Initializers

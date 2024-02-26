@@ -31,7 +31,12 @@ final class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBar.backgroundColor = .black.withAlphaComponent(Constants.alpha)
+        tabBar.backgroundColor = .black
         tabBar.tintColor = .white
+        let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.backgroundColor = .black
+        tabBar.standardAppearance = tabBarAppearance
+        tabBar.scrollEdgeAppearance = tabBarAppearance
+
     }
 }

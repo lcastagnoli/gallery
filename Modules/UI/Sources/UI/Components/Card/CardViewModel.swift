@@ -8,8 +8,10 @@
 public final class CardViewModel {
 
     public var image: String
+    public var index: Int
 
-    init(image: String) {
-        self.image = image
+    public init(image: String?, index: Int) {
+        self.image = image ?? ""
+        self.index = index
     }
 }

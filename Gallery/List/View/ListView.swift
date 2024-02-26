@@ -8,6 +8,12 @@
 import UIKit
 import UI
 
+public protocol ListViewDelegate: AnyObject {
+
+    func didSelect(card: CardView, index: Int, section: Int)
+    func didSelect(section: SectionView, index: Int)
+}
+
 final class ListView: UIView {
 
     // MARK: Constants
@@ -46,6 +52,8 @@ final class ListView: UIView {
         return scrollView
     }()
 
+    private weak var delegate: ListViewDelegate?
+
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,15 +64,12 @@ final class ListView: UIView {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     // MARK: Methods
-    public func setup(with viewModels: [SectionViewModel]) {
+    public func setup(with viewModels: [SectionViewModel], delegate: ListViewDelegate?) {
 
+        self.delegate = delegate
         viewModels.forEach { viewModel in
 
-            let section = SectionView()
-            section.setup(with: viewModel)
-            section.translatesAutoresizingMaskIntoConstraints = true
-            stackView.addArrangedSubview(section)
-            section.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.heightSection).isActive = true
+            createSection(with: viewModel)
         }
     }
 
@@ -79,6 +84,15 @@ final class ListView: UIView {
         case false:
             loader.stopAnimating()
         }
+    }
+
+    private func createSection(with viewModel: SectionViewModel) {
+
+        let section = SectionView()
+        section.setup(with: viewModel, delegate: self)
+        section.translatesAutoresizingMaskIntoConstraints = true
+        stackView.addArrangedSubview(section)
+        section.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.heightSection).isActive = true
     }
 
     private func setupViews() {
@@ -112,5 +126,16 @@ final class ListView: UIView {
             loader.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             loader.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
+    }
+}
+
+// MARK: - SectionViewDelegate
+extension ListView: SectionViewDelegate {
+
+    func didSelect(card: CardView, index: Int, section: Int) {
+        delegate?.didSelect(card: card, index: index, section: section)
+    }
+    func didSelect(section: SectionView, index: Int) {
+        delegate?.didSelect(section: section, index: index)
     }
 }

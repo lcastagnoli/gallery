@@ -6,60 +6,49 @@
 //
 
 import Foundation
+import RealmSwift
 
 public protocol PersistenceManagerProtocol {
 
-    func save<T>(_ value: T, key: String) where T: Encodable
-    func delete(key: String)
-    func get<T>(key: String, as type: T.Type) -> T? where T: Decodable
-    func contains(key: String) -> Bool
-    func clear()
+    func save<T>(_ value: T) where T: Object
+    func delete<T>(key: String, as type: T.Type) where T: Object
+    func get<T>(type: T.Type) -> Results<T>? where T: Object
+    func clear() async throws
 }
 
 public final class PersistenceManager: PersistenceManagerProtocol {
 
-    private let encoder = JSONEncoder()
-    private let decoder = JSONDecoder()
-    private let userDefaults: UserDefaults? = nil
-    private let idenfitier: String = ""
+    // swiftlint:disable:next force_try
+    lazy var realm = try! Realm()
 
-    public func save<T>(_ value: T, key: String) where T: Encodable {
+    public init() {}
 
-        do {
+    public func save<T>(_ value: T) where T: Object {
 
-            let data = try encoder.encode(value)
-            userDefaults?.set(data, forKey: key)
-        } catch {
-
-            if #unavailable(iOS 13) {
-
-                userDefaults?.set(value, forKey: key)
-            }
+        // swiftlint:disable:next force_try
+        try! realm.write {
+            realm.add(value)
         }
     }
 
-    public func delete(key: String) {
-        userDefaults?.removeObject(forKey: key)
-    }
+    public func delete<T>(key: String, as type: T.Type) where T: Object {
 
-    public func get<T>(key: String, as type: T.Type) -> T? where T: Decodable {
-
-        if let data = userDefaults?.data(forKey: key) {
-
-            return try? decoder.decode(type.self, from: data)
+        // swiftlint:disable:next force_try
+        try! realm.write {
+            let toDelete = realm.object(ofType: type.self, forPrimaryKey: key)
+            realm.delete(toDelete!)
         }
-
-        return userDefaults?.value(forKey: key) as? T
     }
 
-    public func contains(key: String) -> Bool {
+    public func get<T>(type: T.Type) -> Results<T>? where T: Object {
 
-        return userDefaults?.value(forKey: key) != nil
+        return realm.objects(T.self)
     }
 
-    public func clear() {
+    public func clear() async throws {
 
-        userDefaults?.removePersistentDomain(forName: idenfitier)
-        userDefaults?.synchronize()
+        try await realm.asyncWrite {
+            realm.deleteAll()
+        }
     }
 }

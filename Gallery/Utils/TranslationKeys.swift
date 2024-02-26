@@ -14,4 +14,5 @@ enum TranslationKeys {
     static let nowPlaying = "nowPlaying"
     static let upcoming = "upcoming"
     static let navTitleMovies = "navTitleMovies"
+    static let navTitleFavorites = "navTitleFavorites"
 }

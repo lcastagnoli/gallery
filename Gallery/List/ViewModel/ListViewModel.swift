@@ -9,6 +9,7 @@ import Combine
 import Network
 import Foundation
 import UI
+import Persistence
 
 protocol ListNavigationDelegate: AnyObject {
 
@@ -20,6 +21,7 @@ protocol ListViewModelProtocol {
     var loadingPublisher: Published<Bool>.Publisher { get }
     var itemsPublisher: Published<[SectionViewModel]>.Publisher { get }
     func getMovies()
+    func addFavorite(section: Int, index: Int)
 }
 
 final class ListViewModel {
@@ -41,6 +43,7 @@ final class ListViewModel {
     private let group = DispatchGroup()
     @Published private var loading: Bool = false
     @Published private var items: [SectionViewModel] = []
+    private var sections: [ResponseList] = []
 
     init(dependencies: Dependencies) {
 
@@ -60,16 +63,35 @@ final class ListViewModel {
                         topRated: ResponseList,
                         upcoming: ResponseList,
                         nowPlaying: ResponseList) {
-        let sectionPopular = SectionViewModel(title: TranslationKeys.popular.localized,
-                                             items: popular.results.map { $0.posterPath })
-        let sectionTopRated = SectionViewModel(title: TranslationKeys.topRated.localized,
-                                             items: topRated.results.map { $0.posterPath })
-        let sectionNowPlaying = SectionViewModel(title: TranslationKeys.nowPlaying.localized,
-                                             items: nowPlaying.results.map { $0.posterPath })
-        let sectionUpcoming = SectionViewModel(title: TranslationKeys.upcoming.localized,
-                                             items: upcoming.results.map { $0.posterPath })
+        createSectionViewModels([TranslationKeys.popular.localized: popular,
+                                 TranslationKeys.topRated.localized: topRated,
+                                 TranslationKeys.nowPlaying.localized: nowPlaying,
+                                 TranslationKeys.upcoming.localized: upcoming])
+        sections = [popular, topRated, nowPlaying, upcoming]
+    }
 
-        items.append(contentsOf: [sectionPopular, sectionTopRated, sectionNowPlaying, sectionUpcoming])
+    private func createSectionViewModels(_ sections: [String: ResponseList]) {
+
+        var sectionViewModels: [SectionViewModel] = []
+        for (index, item) in sections.enumerated() {
+
+            let section = SectionViewModel(title: item.key,
+                                           items: createCardsBySection(item.value.results),
+                                           index: index)
+            sectionViewModels.append(section)
+        }
+
+        items.append(contentsOf: sectionViewModels)
+    }
+
+    private func createCardsBySection(_ results: [Network.Result]) -> [CardViewModel] {
+
+        var cards: [CardViewModel] = []
+        for (index, result) in results.enumerated() {
+
+            cards.append(CardViewModel(image: result.posterPath, index: index))
+        }
+        return cards
     }
 }
 
@@ -100,5 +122,13 @@ extension ListViewModel: ListViewModelProtocol {
                 self?.loading = false
             })
             .store(in: &cancellables)
+    }
+
+    func addFavorite(section: Int, index: Int) {
+
+        let persistence = PersistenceManager()
+        guard let movie = sections[safe: section]?.results[index] else { return }
+        let persistedMovie = PersistedMovie(id: movie.id, posterPath: movie.posterPath)
+        persistence.save(persistedMovie)
     }
 }

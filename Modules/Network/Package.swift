@@ -12,10 +12,14 @@ let package = Package(
             name: "Network",
             targets: ["Network"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/realm/realm-swift.git", from: "10.47.0")
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "Network")
+            name: "Network",
+            dependencies: [.product(name: "Realm", package: "realm-swift")])
     ]
 )

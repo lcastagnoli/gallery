@@ -37,6 +37,6 @@ extension SplashRepository: SplashRepositoryProtocol {
     }
 
     func save(session: String) {
-        security.save(session, key: SecurityKey.guestSession.rawValue)
+        security.save(session, key: Security.Keys.guestSession.rawValue)
     }
 }

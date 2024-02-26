@@ -8,6 +8,12 @@
 import UIKit
 import SDWebImage
 
+public protocol CardViewDelegate: AnyObject {
+
+    func didSelect(view: CardView, index: Int)
+
+}
+
 public final class CardView: UIView {
 
     // MARK: Constants
@@ -22,6 +28,12 @@ public final class CardView: UIView {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
+    lazy var tap: UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTapCard(_:)))
+        return tap
+    }()
+
+    private weak var delegate: CardViewDelegate?
 
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -35,24 +47,35 @@ public final class CardView: UIView {
 
     // MARK: Methods
     private func setupViews() {
+
         addSubview(imageView)
         configureConstraints()
     }
 
-    public func setup(with viewModel: CardViewModel) {
+    public func setup(with viewModel: CardViewModel?, delegate: CardViewDelegate?) {
+
+        guard let viewModel else { return }
+        self.delegate = delegate
         imageView.sd_setImage(with: URL(string: Environment.baseImageUrl.absoluteString + viewModel.image),
                               placeholderImage: UIImage(named: Images.placeholder))
+        tag = viewModel.index
+        addGestureRecognizer(tap)
     }
 
     private func configureConstraints() {
+
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: self.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: Constants.width),
-            imageView.heightAnchor.constraint(equalToConstant: Constants.height)
+            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
+    }
+
+    @objc private func didTapCard(_ sender: UITapGestureRecognizer) {
+
+        guard let index = sender.view?.tag else { return }
+        delegate?.didSelect(view: self, index: index)
     }
 }

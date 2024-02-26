@@ -6,11 +6,40 @@
 //
 
 import UIKit
+import Combine
 
 final class FavoritesViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .red
+    // MARK: Properties
+    private let viewModel: FavoritesViewModelProtocol
+    private let customView = FavoritesView()
+    private var cancellables = Set<AnyCancellable>()
+
+    // MARK: Initializers
+    init(with viewModel: FavoritesViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: Lifecycle
+    override func loadView() {
+        super.loadView()
+        self.view = customView
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationItem.title = TranslationKeys.navTitleFavorites.localized
+        viewModel.getFavoriteMovies()
+        viewModel.itemsPublisher
+            .sink { [weak self] value in
+                self?.customView.setup(with: value)
+            }
+            .store(in: &cancellables)
     }
 }

@@ -9,14 +9,6 @@ import CryptoKit
 import Security
 import Foundation
 
-public enum SecurityKey: String {
-
-    case guestSession
-}
-enum CryptoError: Error {
-    case encryptionFailed
-    case decryptionFailed
-}
 public protocol SecurityProtocol {
 
     func save(_ value: String, key: String)
@@ -25,6 +17,15 @@ public protocol SecurityProtocol {
 }
 
 public final class Security: SecurityProtocol {
+
+    public enum Keys: String {
+
+        case guestSession
+    }
+    enum CryptoError: Error {
+        case encryptionFailed
+        case decryptionFailed
+    }
 
     public init() {}
 

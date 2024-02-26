@@ -35,6 +35,23 @@
         }
       }
     },
+    "navTitleFavorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Favorites"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoritos"
+          }
+        }
+      }
+    },
     "navTitleMovies" : {
       "extractionState" : "manual",
       "localizations" : {
