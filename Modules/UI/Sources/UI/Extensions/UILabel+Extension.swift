@@ -13,12 +13,15 @@ extension UILabel: Styleable {
     public enum Style: Int {
 
         case title
+        case genre
 
         var font: UIFont {
 
             switch self {
             case .title:
                 return UIFont.boldSystemFont(ofSize: 16.0)
+            case .genre:
+                return UIFont.systemFont(ofSize: 11)
             }
         }
 
@@ -26,8 +29,19 @@ extension UILabel: Styleable {
 
             switch self {
 
-            case .title:
+            case .title,
+                 .genre:
                 return .white
+            }
+        }
+
+        var backgroundColor: UIColor {
+
+            switch self {
+            case .genre:
+                return .white.withAlphaComponent(0.5)
+            default:
+                return .clear
             }
         }
     }
@@ -36,6 +50,7 @@ extension UILabel: Styleable {
 
         font = style.font
         textColor = style.textColor
+        backgroundColor = style.backgroundColor
     }
 
     public convenience init(style: Style) {

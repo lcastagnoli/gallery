@@ -22,12 +22,14 @@ protocol ListViewModelProtocol {
     var itemsPublisher: Published<[SectionViewModel]>.Publisher { get }
     func getMovies()
     func addFavorite(section: Int, index: Int)
+    func details(section: Int, index: Int)
 }
 
 final class ListViewModel {
 
     enum Result {
 
+        case details(Int)
         case error(String)
     }
 
@@ -43,7 +45,7 @@ final class ListViewModel {
     private let group = DispatchGroup()
     @Published private var loading: Bool = false
     @Published private var items: [SectionViewModel] = []
-    private var sections: [ResponseList] = []
+    private var sections: [Response] = []
 
     init(dependencies: Dependencies) {
 
@@ -59,10 +61,10 @@ final class ListViewModel {
         }
     }
 
-    private func handle(with popular: ResponseList,
-                        topRated: ResponseList,
-                        upcoming: ResponseList,
-                        nowPlaying: ResponseList) {
+    private func handle(with popular: Response,
+                        topRated: Response,
+                        upcoming: Response,
+                        nowPlaying: Response) {
         createSectionViewModels([TranslationKeys.popular.localized: popular,
                                  TranslationKeys.topRated.localized: topRated,
                                  TranslationKeys.nowPlaying.localized: nowPlaying,
@@ -70,7 +72,7 @@ final class ListViewModel {
         sections = [popular, topRated, nowPlaying, upcoming]
     }
 
-    private func createSectionViewModels(_ sections: [String: ResponseList]) {
+    private func createSectionViewModels(_ sections: [String: Response]) {
 
         var sectionViewModels: [SectionViewModel] = []
         for (index, item) in sections.enumerated() {
@@ -84,7 +86,7 @@ final class ListViewModel {
         items.append(contentsOf: sectionViewModels)
     }
 
-    private func createCardsBySection(_ results: [Network.Result]) -> [CardViewModel] {
+    private func createCardsBySection(_ results: [Network.Movie]) -> [CardViewModel] {
 
         var cards: [CardViewModel] = []
         for (index, result) in results.enumerated() {
@@ -130,5 +132,11 @@ extension ListViewModel: ListViewModelProtocol {
         guard let movie = sections[safe: section]?.results[index] else { return }
         let persistedMovie = PersistedMovie(id: movie.id, posterPath: movie.posterPath)
         persistence.save(persistedMovie)
+    }
+    
+    func details(section: Int, index: Int) {
+
+        guard let movie = sections[safe: section]?.results[index] else { return }
+        dependencies.navigation?.list(didFinish: .details(movie.id))
     }
 }

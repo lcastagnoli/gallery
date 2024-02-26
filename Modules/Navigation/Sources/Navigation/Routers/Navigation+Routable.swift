@@ -45,6 +45,24 @@ extension NavigationRoutable {
 
         navigation.dismiss(animated: animated)
     }
+
+    public func present(_ coordinator: NavigationRoutable,
+                        transition: UIModalTransitionStyle = .crossDissolve,
+                        animated: Bool = true) {
+
+        add(coordinator)
+        coordinator.start()
+        coordinator.root.modalPresentationStyle = .overFullScreen
+        coordinator.root.modalTransitionStyle = transition
+
+        navigation.present(coordinator.root, animated: animated)
+    }
+
+    public func dismiss(_ coordinator: NavigationRoutable, animated: Bool = true) {
+
+        remove(coordinator)
+        coordinator.root.dismiss(animated: animated)
+    }
 }
 
 // MARK: - UINavigationControllerDelegate

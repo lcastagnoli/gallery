@@ -4,6 +4,7 @@
 //
 //  Created by Laryssa Castagnoli on 24/02/24.
 //
+import Realm
 import RealmSwift
 
 final public class PersistedMovie: Object {

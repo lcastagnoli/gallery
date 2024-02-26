@@ -12,6 +12,7 @@ enum MovieRouter: URLRequestCreator {
     case nowPlaying
     case topRated
     case upcoming
+    case movie(Int)
 
     var baseURL: URL { Environment.baseUrl }
 
@@ -22,7 +23,8 @@ enum MovieRouter: URLRequestCreator {
         case .popular,
              .upcoming,
              .topRated,
-             .nowPlaying:
+             .nowPlaying,
+             .movie:
             return .get
         }
     }
@@ -39,6 +41,8 @@ enum MovieRouter: URLRequestCreator {
             return "movie/top_rated"
         case .upcoming:
             return "movie/upcoming"
+        case let .movie(id):
+            return "movie/\(id)"
         }
     }
 }

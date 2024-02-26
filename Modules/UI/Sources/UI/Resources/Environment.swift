@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum Environment {
+public enum Environment {
 
-    static var baseImageUrl: URL {
+    public static var baseImageUrl: URL {
 
         guard
             let string = Bundle.main.object(forInfoDictionaryKey: "baseImageUrl") as? String,

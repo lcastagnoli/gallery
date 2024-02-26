@@ -55,7 +55,8 @@ extension ListViewController: ListViewDelegate {
 
     func didSelect(card: CardView, index: Int, section: Int) {
 
-        viewModel.addFavorite(section: section, index: index)
+//        viewModel.addFavorite(section: section, index: index)
+        viewModel.details(section: section, index: index)
     }
 
     func didSelect(section: SectionView, index: Int) { }

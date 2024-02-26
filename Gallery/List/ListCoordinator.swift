@@ -19,7 +19,7 @@ final class ListCoordinator: NavigationRoutable {
         let client = APIClient(session: URLSession.shared)
         let service = MovieService(client: client)
         let repository = ListRepository(service: service)
-        let dependencies = ListViewModel.Dependencies(repository: repository)
+        let dependencies = ListViewModel.Dependencies(navigation: self, repository: repository)
         let viewModel = ListViewModel(dependencies: dependencies)
         return ListViewController(with: viewModel)
     }()
@@ -29,11 +29,32 @@ final class ListCoordinator: NavigationRoutable {
 
         self.navigation = navigation
     }
+
+    // MARK: Methods
+    private func openDetails(_ id: Int) {
+
+        let navigation = UINavigationController(barStyle: .black)
+        let coordinator = DetailsCoordinator(navigation: navigation, movieId: id)
+        present(coordinator, transition: .coverVertical)
+    }
 }
 
 extension ListCoordinator {
 
     func start() {
         setRoot(listViewController)
+    }
+}
+
+// MARK: - ListNavigationDelegate
+extension ListCoordinator: ListNavigationDelegate {
+    func list(didFinish result: ListViewModel.Result) {
+
+        switch result {
+        case .details(let id):
+            openDetails(id)
+        case .error(let string):
+            break
+        }
     }
 }

@@ -11,10 +11,10 @@ import Persistence
 
 protocol ListRepositoryProtocol {
 
-    func getPopularMovies() -> AnyPublisher<ResponseList, Error>
-    func getUpcomingMovies() -> AnyPublisher<ResponseList, Error>
-    func getTopRatedMovies() -> AnyPublisher<ResponseList, Error>
-    func getNowPlayingMovies() -> AnyPublisher<ResponseList, Error>
+    func getPopularMovies() -> AnyPublisher<Response, Error>
+    func getUpcomingMovies() -> AnyPublisher<Response, Error>
+    func getTopRatedMovies() -> AnyPublisher<Response, Error>
+    func getNowPlayingMovies() -> AnyPublisher<Response, Error>
 }
 
 final class ListRepository {
@@ -32,19 +32,19 @@ final class ListRepository {
 // MARK: - ListRepositoryProtocol
 extension ListRepository: ListRepositoryProtocol {
 
-    func getPopularMovies() -> AnyPublisher<ResponseList, Error> {
+    func getPopularMovies() -> AnyPublisher<Response, Error> {
         return service.getPopularMovies().eraseToAnyPublisher()
     }
 
-    func getUpcomingMovies() -> AnyPublisher<Network.ResponseList, Error> {
+    func getUpcomingMovies() -> AnyPublisher<Network.Response, Error> {
         return service.getUpcomingMovies().eraseToAnyPublisher()
     }
 
-    func getTopRatedMovies() -> AnyPublisher<Network.ResponseList, Error> {
+    func getTopRatedMovies() -> AnyPublisher<Network.Response, Error> {
         return service.getTopRatedMovies().eraseToAnyPublisher()
     }
 
-    func getNowPlayingMovies() -> AnyPublisher<Network.ResponseList, Error> {
+    func getNowPlayingMovies() -> AnyPublisher<Network.Response, Error> {
         return service.getNowPlayingMovies().eraseToAnyPublisher()
     }
 }
