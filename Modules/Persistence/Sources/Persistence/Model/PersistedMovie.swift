@@ -9,7 +9,7 @@ import RealmSwift
 
 final public class PersistedMovie: Object {
 
-    @Persisted public var id: Int
+    @Persisted (primaryKey: true) public var id: Int
     @Persisted public var posterPath: String
 
     public convenience init(id: Int, posterPath: String) {

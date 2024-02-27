@@ -33,9 +33,13 @@ final class ListCoordinator: NavigationRoutable {
     // MARK: Methods
     private func openDetails(_ id: Int) {
 
-        let navigation = UINavigationController(barStyle: .black)
+        let navigation = UINavigationController(barStyle: .transparent)
         let coordinator = DetailsCoordinator(navigation: navigation, movieId: id)
-        present(coordinator, transition: .coverVertical)
+        let closeButton: UIBarButtonItem = .custom(icon: Images.back) { [weak self, weak coordinator] in
+            guard let self = self, let coordinator = coordinator else { return }
+            self.dismiss(coordinator)
+        }
+        present(coordinator, transition: .coverVertical, backButton: closeButton)
     }
 }
 

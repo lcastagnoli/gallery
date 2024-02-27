@@ -12,6 +12,7 @@ extension UINavigationBar: Styleable {
     public enum Style: Int {
 
         case black
+        case transparent
 
         var backgroundColor: UIColor {
 
@@ -19,6 +20,8 @@ extension UINavigationBar: Styleable {
 
             case .black:
                 return .black
+            case .transparent:
+                return .clear
             }
         }
 
@@ -26,7 +29,8 @@ extension UINavigationBar: Styleable {
 
             switch self {
 
-            case .black:
+            case .black,
+                 .transparent:
                 return .white
             }
         }
@@ -37,6 +41,8 @@ extension UINavigationBar: Styleable {
 
             case .black:
                 return false
+            case .transparent:
+                return true
             }
         }
 
@@ -55,6 +61,8 @@ extension UINavigationBar: Styleable {
 
             case .black:
                 return nil
+            default:
+                return UIImage()
             }
         }
 
@@ -64,6 +72,8 @@ extension UINavigationBar: Styleable {
 
             case .black:
                 return nil
+            default:
+                return UIImage()
             }
         }
     }
@@ -71,11 +81,21 @@ extension UINavigationBar: Styleable {
     public func style(as style: Style) {
 
         let appearance = UINavigationBarAppearance()
+
         appearance.configureWithOpaqueBackground()
         appearance.titleTextAttributes = [.foregroundColor: style.tintColor,
                                           .font: style.font]
         appearance.largeTitleTextAttributes = [.foregroundColor: style.tintColor]
         appearance.backgroundColor = style.backgroundColor
+        appearance.shadowColor = .clear
+        appearance.backgroundEffect = nil
+        appearance.backgroundImage = style.backgroundImage
+        appearance.shadowImage = style.shadowImage
+
+        tintColor = style.tintColor
+        isTranslucent = style.isTranslucent
+        shadowImage = style.shadowImage
+
         standardAppearance = appearance
         scrollEdgeAppearance = appearance
         compactAppearance = appearance

@@ -43,6 +43,7 @@
 		48903E502B8D39D80041BBCF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 48903E4F2B8D39D80041BBCF /* RealmSwift */; };
 		48903E522B8D3FB70041BBCF /* DetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48903E512B8D3FB70041BBCF /* DetailsRepository.swift */; };
 		48903E542B8D459D0041BBCF /* DetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48903E532B8D459D0041BBCF /* DetailsCoordinator.swift */; };
+		48903E582B8DE8AD0041BBCF /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48903E572B8DE8AD0041BBCF /* UIBarButtonItem+Extension.swift */; };
 		48BA8B812B80C23300699267 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA8B802B80C23200699267 /* TabItem.swift */; };
 		48BA8B842B80C7ED00699267 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BA8B832B80C7ED00699267 /* Images.swift */; };
 		48BA8B862B80DE4500699267 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 48BA8B852B80DE4500699267 /* Localizable.xcstrings */; };
@@ -99,6 +100,7 @@
 		488A10942B8A35FF00FEE3FB /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		48903E512B8D3FB70041BBCF /* DetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRepository.swift; sourceTree = "<group>"; };
 		48903E532B8D459D0041BBCF /* DetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCoordinator.swift; sourceTree = "<group>"; };
+		48903E572B8DE8AD0041BBCF /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		48BA8B802B80C23200699267 /* TabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		48BA8B832B80C7ED00699267 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		48BA8B852B80DE4500699267 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 			children = (
 				48E705D02B82133400DCC695 /* String+Extension.swift */,
 				488A10532B835FE300FEE3FB /* UITabBarItem+Extension.swift */,
+				48903E572B8DE8AD0041BBCF /* UIBarButtonItem+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				481D54602B7E87E200ABF55C /* HomeViewModel.swift in Sources */,
 				48BA8B8C2B80F96D00699267 /* FavoritesViewController.swift in Sources */,
 				48E705D12B82133400DCC695 /* String+Extension.swift in Sources */,
+				48903E582B8DE8AD0041BBCF /* UIBarButtonItem+Extension.swift in Sources */,
 				48BA8B882B80DF3900699267 /* TranslationKeys.swift in Sources */,
 				48E705D32B8213C000DCC695 /* ListViewModel.swift in Sources */,
 				488A10952B8A360000FEE3FB /* FavoritesViewModel.swift in Sources */,

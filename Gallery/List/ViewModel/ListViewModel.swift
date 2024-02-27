@@ -21,7 +21,6 @@ protocol ListViewModelProtocol {
     var loadingPublisher: Published<Bool>.Publisher { get }
     var itemsPublisher: Published<[SectionViewModel]>.Publisher { get }
     func getMovies()
-    func addFavorite(section: Int, index: Int)
     func details(section: Int, index: Int)
 }
 
@@ -65,35 +64,26 @@ final class ListViewModel {
                         topRated: Response,
                         upcoming: Response,
                         nowPlaying: Response) {
-        createSectionViewModels([TranslationKeys.popular.localized: popular,
-                                 TranslationKeys.topRated.localized: topRated,
-                                 TranslationKeys.nowPlaying.localized: nowPlaying,
-                                 TranslationKeys.upcoming.localized: upcoming])
+
         sections = [popular, topRated, nowPlaying, upcoming]
-    }
-
-    private func createSectionViewModels(_ sections: [String: Response]) {
-
-        var sectionViewModels: [SectionViewModel] = []
-        for (index, item) in sections.enumerated() {
-
-            let section = SectionViewModel(title: item.key,
-                                           items: createCardsBySection(item.value.results),
-                                           index: index)
-            sectionViewModels.append(section)
-        }
-
-        items.append(contentsOf: sectionViewModels)
+        items.append(contentsOf: [SectionViewModel(title: TranslationKeys.popular.localized,
+                                                   items: createCardsBySection(popular.results),
+                                                   index: .zero),
+                                  SectionViewModel(title: TranslationKeys.topRated.localized,
+                                                   items: createCardsBySection(topRated.results),
+                                                   index: 1),
+                                  SectionViewModel(title: TranslationKeys.nowPlaying.localized,
+                                                   items: createCardsBySection(nowPlaying.results),
+                                                   index: 2),
+                                  SectionViewModel(title: TranslationKeys.upcoming.localized,
+                                                   items: createCardsBySection(upcoming.results),
+                                                   index: 3)])
     }
 
     private func createCardsBySection(_ results: [Network.Movie]) -> [CardViewModel] {
-
-        var cards: [CardViewModel] = []
-        for (index, result) in results.enumerated() {
-
-            cards.append(CardViewModel(image: result.posterPath, index: index))
+        return results.enumerated().compactMap { (index, item) in
+            CardViewModel(image: item.posterPath, index: index)
         }
-        return cards
     }
 }
 
@@ -126,14 +116,6 @@ extension ListViewModel: ListViewModelProtocol {
             .store(in: &cancellables)
     }
 
-    func addFavorite(section: Int, index: Int) {
-
-        let persistence = PersistenceManager()
-        guard let movie = sections[safe: section]?.results[index] else { return }
-        let persistedMovie = PersistedMovie(id: movie.id, posterPath: movie.posterPath)
-        persistence.save(persistedMovie)
-    }
-    
     func details(section: Int, index: Int) {
 
         guard let movie = sections[safe: section]?.results[index] else { return }

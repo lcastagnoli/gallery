@@ -32,6 +32,7 @@ extension WindowRoutable {
     public func setRoot(_ controller: UIViewController, animated: Bool = true) {
 
         window.rootViewController = controller
+        window.backgroundColor = .black.withAlphaComponent(0.5)
         window.makeKeyAndVisible()
 
         UIView.transition(with: window,

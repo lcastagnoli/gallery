@@ -9,6 +9,7 @@ import Foundation
 import Navigation
 import UIKit
 import Network
+import Persistence
 
 final class DetailsCoordinator: NavigationRoutable {
 
@@ -21,8 +22,9 @@ final class DetailsCoordinator: NavigationRoutable {
 
         let client = APIClient(session: URLSession.shared)
         let service = MovieService(client: client)
-        let repository = DetailsRepository(service: service)
-        let dependencies = DetailsViewModel.Dependencies(repository: repository, movieId: movieId)
+        let persistence = PersistenceManager()
+        let repository = DetailsRepository(service: service, persistence: persistence, movieId: movieId)
+        let dependencies = DetailsViewModel.Dependencies(repository: repository)
         let viewModel = DetailsViewModel(dependencies: dependencies)
         return DetailsViewController(with: viewModel)
     }()

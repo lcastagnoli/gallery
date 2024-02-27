@@ -19,7 +19,9 @@ protocol DetailsViewModelProtocol {
 
     var loadingPublisher: Published<Bool>.Publisher { get }
     var headerPublisher: Published<HeaderViewModel?>.Publisher { get }
+
     func getMovie()
+    func tapFavorite()
 }
 
 final class DetailsViewModel {
@@ -33,7 +35,6 @@ final class DetailsViewModel {
 
         weak var navigation: DetailsViewDelegate?
         let repository: DetailsRepositoryProtocol
-        let movieId: Int
     }
 
     // MARK: Properties
@@ -41,6 +42,7 @@ final class DetailsViewModel {
     private var cancellables = Set<AnyCancellable>()
     @Published private var loading: Bool = false
     @Published private var headerViewModel: HeaderViewModel?
+    private var movie: Movie?
 
     init(dependencies: Dependencies) {
 
@@ -55,11 +57,16 @@ final class DetailsViewModel {
             break
         }
     }
-    
+
     private func handle(_ result: Movie) {
 
+        movie = result
         let genres = result.genres?.compactMap { $0.name }
-        headerViewModel = HeaderViewModel(image: result.posterPath, genres: genres, title: result.title)
+        headerViewModel = HeaderViewModel(image: result.posterPath,
+                                          genres: genres,
+                                          title: result.title,
+                                          description: result.overview,
+                                          favorited: dependencies.repository.favorited)
     }
 }
 
@@ -72,7 +79,7 @@ extension DetailsViewModel: DetailsViewModelProtocol {
     func getMovie() {
 
         loading = true
-        dependencies.repository.getMovie(id: dependencies.movieId)
+        dependencies.repository.getMovie()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 self?.loading = false
@@ -82,5 +89,11 @@ extension DetailsViewModel: DetailsViewModelProtocol {
                 self?.handle(response)
             })
             .store(in: &cancellables)
+    }
+
+    func tapFavorite() {
+
+        dependencies.repository.tapFavorite(posterPath: movie?.posterPath ?? "")
+        headerViewModel?.changeState(favorited: dependencies.repository.favorited)
     }
 }

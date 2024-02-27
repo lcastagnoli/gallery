@@ -11,26 +11,43 @@ import Persistence
 
 protocol DetailsRepositoryProtocol {
 
-    func getMovie(id: Int) -> AnyPublisher<Movie, Error>
+    var favorited: Bool { get }
+    func getMovie() -> AnyPublisher<Movie, Error>
+    func tapFavorite(posterPath: String)
 }
 
 final class DetailsRepository {
 
     // MARK: Properties
     private let service: MovieServiceProtocol
+    private let persistence: PersistenceManagerProtocol
+    private let movieId: Int
 
     // MARK: Initializers
-    init(service: MovieServiceProtocol) {
+    init(service: MovieServiceProtocol, persistence: PersistenceManagerProtocol, movieId: Int) {
 
         self.service = service
+        self.persistence = persistence
+        self.movieId = movieId
     }
 }
 
 // MARK: - ListRepositoryProtocol
 extension DetailsRepository: DetailsRepositoryProtocol {
 
-    func getMovie(id: Int) -> AnyPublisher<Movie, Error> {
-        return service.getMovie(by: id).eraseToAnyPublisher()
+    var favorited: Bool { persistence.contains(type: PersistedMovie.self, id: movieId) }
+
+    func getMovie() -> AnyPublisher<Movie, Error> {
+        return service.getMovie(by: movieId).eraseToAnyPublisher()
+    }
+
+    func tapFavorite(posterPath: String) {
+
+        if favorited {
+            persistence.delete(key: movieId, as: PersistedMovie.self)
+        } else {
+            let persistedMovie = PersistedMovie(id: movieId, posterPath: posterPath)
+            persistence.save(persistedMovie)
+        }
     }
 }
-

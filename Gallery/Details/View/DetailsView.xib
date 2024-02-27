@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,21 +21,25 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fwf-Hc-wBn">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qli-Za-vdZ">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="3Yu-BQ-Qt1">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="400"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3L-y7-fYf" customClass="HeaderView" customModule="Gallery" customModuleProvider="target">
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="400" translatesAutoresizingMaskIntoConstraints="NO" id="l3L-y7-fYf" customClass="HeaderView" customModule="Gallery" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="400"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="400" id="Dh7-Ks-3Gf"/>
-                                    </constraints>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="l3L-y7-fYf" firstAttribute="width" secondItem="3Yu-BQ-Qt1" secondAttribute="width" id="784-8y-RYd"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,19 +55,18 @@
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="qli-Za-vdZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="1Qo-Jb-MSz"/>
+                <constraint firstItem="qli-Za-vdZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1Qo-Jb-MSz"/>
                 <constraint firstItem="qli-Za-vdZ" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Bmq-Bv-muj"/>
                 <constraint firstItem="qli-Za-vdZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Cjs-Ph-BjI"/>
                 <constraint firstItem="qli-Za-vdZ" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="L6K-br-LY7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Fwf-Hc-wBn" secondAttribute="trailing" id="Tfg-PI-IGd"/>
+                <constraint firstItem="Fwf-Hc-wBn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XgC-pv-sX5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Fwf-Hc-wBn" secondAttribute="bottom" id="nYL-OA-uoz"/>
+                <constraint firstItem="Fwf-Hc-wBn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uQr-2o-R95"/>
             </constraints>
             <point key="canvasLocation" x="-85" y="20"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

@@ -44,7 +44,19 @@ final class DetailsViewController: UIViewController {
             .store(in: &cancellables)
     }
 
+    // MARK: Methods
     private func configureHeader(with viewModel: HeaderViewModel) {
-        headerView.setup(with: viewModel)
+        headerView.setup(with: viewModel, delegate: self)
+    }
+}
+
+// MARK: - HeaderViewDelegate
+extension DetailsViewController: HeaderViewDelegate {
+
+    func didTapWatch() { }
+
+    func didTapFavorite() {
+
+        viewModel.tapFavorite()
     }
 }

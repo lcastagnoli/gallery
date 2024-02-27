@@ -14,6 +14,7 @@ extension UILabel: Styleable {
 
         case title
         case genre
+        case description
 
         var font: UIFont {
 
@@ -22,6 +23,8 @@ extension UILabel: Styleable {
                 return UIFont.boldSystemFont(ofSize: 16.0)
             case .genre:
                 return UIFont.systemFont(ofSize: 11)
+            case .description:
+                return UIFont.systemFont(ofSize: 13)
             }
         }
 
@@ -30,7 +33,8 @@ extension UILabel: Styleable {
             switch self {
 
             case .title,
-                 .genre:
+                 .genre,
+                 .description:
                 return .white
             }
         }
@@ -44,6 +48,16 @@ extension UILabel: Styleable {
                 return .clear
             }
         }
+
+        var cornerRadius: CGFloat {
+
+            switch self {
+            case .genre:
+                return 8.0
+            default:
+                return .zero
+            }
+        }
     }
 
     public func style(as style: Style) {
@@ -51,6 +65,8 @@ extension UILabel: Styleable {
         font = style.font
         textColor = style.textColor
         backgroundColor = style.backgroundColor
+        layer.cornerRadius = style.cornerRadius
+        clipsToBounds = style.cornerRadius > .zero
     }
 
     public convenience init(style: Style) {

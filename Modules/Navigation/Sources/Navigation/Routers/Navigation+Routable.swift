@@ -48,11 +48,12 @@ extension NavigationRoutable {
 
     public func present(_ coordinator: NavigationRoutable,
                         transition: UIModalTransitionStyle = .crossDissolve,
+                        backButton: UIBarButtonItem? = nil,
                         animated: Bool = true) {
 
         add(coordinator)
         coordinator.start()
-        coordinator.root.modalPresentationStyle = .overFullScreen
+        coordinator.navigation.viewControllers.first?.navigationItem.leftBarButtonItem = backButton
         coordinator.root.modalTransitionStyle = transition
 
         navigation.present(coordinator.root, animated: animated)

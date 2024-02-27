@@ -15,4 +15,7 @@ enum TranslationKeys {
     static let upcoming = "upcoming"
     static let navTitleMovies = "navTitleMovies"
     static let navTitleFavorites = "navTitleFavorites"
+    static let buttonFavoriteUnchecked = "buttonFavoriteUnchecked"
+    static let buttonFavoriteChecked = "buttonFavoriteChecked"
+    static let buttonPlay = "buttonPlay"
 }
