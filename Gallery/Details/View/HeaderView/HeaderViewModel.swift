@@ -7,13 +7,13 @@
 
 struct HeaderViewModel {
 
-    private (set) var image: String
+    private (set) var image: String?
     private (set) var genres: [String]?
     private (set) var title: String?
     private (set) var description: String?
     private (set) var favorited: Bool
 
-    init(image: String,
+    init(image: String? = nil,
          genres: [String]? = nil,
          title: String? = nil,
          description: String? = nil,

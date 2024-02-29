@@ -15,6 +15,7 @@ extension UILabel: Styleable {
         case title
         case genre
         case description
+        case content
 
         var font: UIFont {
 
@@ -25,6 +26,8 @@ extension UILabel: Styleable {
                 return UIFont.systemFont(ofSize: 11)
             case .description:
                 return UIFont.systemFont(ofSize: 13)
+            case .content:
+                return UIFont.systemFont(ofSize: 15)
             }
         }
 
@@ -34,7 +37,8 @@ extension UILabel: Styleable {
 
             case .title,
                  .genre,
-                 .description:
+                 .description,
+                 .content:
                 return .white
             }
         }

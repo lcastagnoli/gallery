@@ -16,7 +16,8 @@ final class FavoritesCoordinator: NavigationRoutable {
     var completions: [UIViewController: (() -> Void)] = [:]
 
     private lazy var favoritesViewController: FavoritesViewController = {
-        let dependencies = FavoritesViewModel.Dependencies(persistence: PersistenceManager())
+        let persistence = PersistenceManager()
+        let dependencies = FavoritesViewModel.Dependencies(navigation: self, persistence: persistence)
         return FavoritesViewController(with: FavoritesViewModel(dependencies: dependencies))
     }()
 
@@ -31,5 +32,39 @@ extension FavoritesCoordinator {
 
     func start() {
         setRoot(favoritesViewController)
+    }
+
+    private func openDetails(_ id: Int) {
+        let navigation = UINavigationController(barStyle: .transparent)
+        let coordinator = DetailsCoordinator(navigation: navigation, movieId: id, delegate: self)
+        let closeButton: UIBarButtonItem = .custom(icon: Images.back) { [weak self, weak coordinator] in
+            guard let self = self, let coordinator = coordinator else { return }
+            self.dismiss(coordinator)
+            favoritesViewController.getFavorites()
+        }
+        present(coordinator, transition: .coverVertical, backButton: closeButton)
+    }
+}
+
+// MARK: - FavoritesNavigationDelegate
+extension FavoritesCoordinator: FavoritesNavigationDelegate {
+
+    func favorites(didFinish result: FavoritesViewModel.Result) {
+        switch result {
+        case let .details(id):
+            openDetails(id)
+        }
+    }
+}
+
+// MARK: - DetailsCoordinatorDelegate
+extension FavoritesCoordinator: DetailsCoordinatorDelegate {
+
+    func didFinish(coordinator: DetailsCoordinator, result: DetailsCoordinator.Result) {
+        dismiss(coordinator, animated: true)
+        switch result {
+        case let .recommended(id):
+            openDetails(id)
+        }
     }
 }

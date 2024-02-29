@@ -58,6 +58,7 @@ public final class CardView: UIView {
         self.delegate = delegate
         imageView.sd_setImage(with: URL(string: Environment.baseImageUrl.absoluteString + viewModel.image),
                               placeholderImage: UIImage(named: Images.placeholder))
+        guard delegate != nil else { return }
         tag = viewModel.index
         addGestureRecognizer(tap)
     }

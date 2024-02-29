@@ -10,9 +10,9 @@ import Foundation
 // MARK: - Response
 public struct Response: Decodable {
 
-    public let page: Int
-    public let results: [Movie]
-    public let totalPages, totalResults: Int
+    public let page: Int?
+    public let results: [Movie]?
+    public let totalPages, totalResults: Int?
 
     enum CodingKeys: String, CodingKey {
         case page, results

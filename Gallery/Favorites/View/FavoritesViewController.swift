@@ -35,11 +35,24 @@ final class FavoritesViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationItem.title = TranslationKeys.navTitleFavorites.localized
+        getFavorites()
+    }
+
+    func getFavorites() {
         viewModel.getFavoriteMovies()
+
         viewModel.itemsPublisher
             .sink { [weak self] value in
-                self?.customView.setup(with: value)
+                self?.customView.setup(with: value, delegate: self)
             }
             .store(in: &cancellables)
+    }
+}
+
+// MARK: FavoritesViewDelegate
+extension FavoritesViewController: FavoritesViewDelegate {
+
+    func didSelect(view: FavoritesView, index: Int) {
+        viewModel.didSelect(index: index)
     }
 }

@@ -45,4 +45,18 @@ enum MovieRouter: URLRequestCreator {
             return "movie/\(id)"
         }
     }
+
+    var queries: [String: String] {
+
+        switch self {
+        case .popular,
+         .nowPlaying,
+         .topRated,
+         .upcoming:
+            return ["language": Locale.current.languageCode ?? ""]
+        case .movie:
+            return ["language": Locale.current.languageCode ?? "",
+                    "append_to_response": "recommendations,credits,videos"]
+        }
+    }
 }

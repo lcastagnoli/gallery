@@ -18,4 +18,13 @@ enum TranslationKeys {
     static let buttonFavoriteUnchecked = "buttonFavoriteUnchecked"
     static let buttonFavoriteChecked = "buttonFavoriteChecked"
     static let buttonPlay = "buttonPlay"
+    static let recommendations = "recommendations"
+    static let details = "details"
+    static let originalTitle = "originalTitle"
+    static let actors = "actors"
+    static let country = "country"
+    static let datasheet = "datasheet"
+    static let director = "director"
+    static let genre = "genre"
+    static let productionYear = "productionYear"
 }

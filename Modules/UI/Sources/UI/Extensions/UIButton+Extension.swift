@@ -13,6 +13,7 @@ extension UIButton: Styleable {
 
         case play
         case favorite
+        case tab
 
         var font: UIFont {
 
@@ -20,6 +21,8 @@ extension UIButton: Styleable {
             case .play,
                  .favorite:
                 return UIFont.boldSystemFont(ofSize: 16.0)
+            case .tab:
+                return UIFont.systemFont(ofSize: 16.0)
             }
         }
 
@@ -28,8 +31,21 @@ extension UIButton: Styleable {
             switch self {
 
             case .play,
+                 .favorite,
+                 .tab:
+                return .lightGray
+            }
+        }
+
+        var selectedTextColor: UIColor {
+
+            switch self {
+
+            case .play,
                  .favorite:
                 return .lightGray
+            case .tab:
+                return .white
             }
         }
 
@@ -47,8 +63,10 @@ extension UIButton: Styleable {
 
             switch self {
             case .favorite,
-                .play:
+                 .play:
                 return 8.0
+            default:
+                return .zero
             }
         }
 
@@ -56,8 +74,10 @@ extension UIButton: Styleable {
 
             switch self {
             case .favorite,
-                .play:
+                 .play:
                 return 1.0
+            default:
+                return .zero
             }
         }
 
@@ -67,6 +87,8 @@ extension UIButton: Styleable {
             case .favorite,
                  .play:
                 return .white
+            default:
+                return .clear
             }
         }
     }
@@ -74,18 +96,32 @@ extension UIButton: Styleable {
     public func style(as style: Style) {
 
         setTitleColor(style.textColor, for: .normal)
+        setTitleColor(style.selectedTextColor, for: .selected)
         titleLabel?.font =  style.font
         backgroundColor = style.backgroundColor
         layer.cornerRadius = style.cornerRadius
         clipsToBounds = style.cornerRadius > .zero
         layer.borderColor = style.borderColor.cgColor
         layer.borderWidth = style.borderWidth
-        titleLabel?.isUserInteractionEnabled = true
     }
 
     public convenience init(style: Style) {
 
         self.init()
         self.style(as: style)
+    }
+
+    public convenience init(as style: UIButton.Style,
+                            title: String,
+                            tag: Int,
+                            buttonInsets: UIEdgeInsets = .zero,
+                            selected: Bool = false) {
+
+        self.init()
+        self.style(as: style)
+        self.tag = tag
+        setTitle(title, for: .normal)
+        titleEdgeInsets = buttonInsets
+        self.isSelected = selected
     }
 }

@@ -10,7 +10,7 @@ import UI
 import Network
 import Foundation
 
-protocol DetailsViewDelegate: AnyObject {
+protocol DetailsNavigationDelegate: AnyObject {
 
     func details(didFinish result: DetailsViewModel.Result)
 }
@@ -19,9 +19,13 @@ protocol DetailsViewModelProtocol {
 
     var loadingPublisher: Published<Bool>.Publisher { get }
     var headerPublisher: Published<HeaderViewModel?>.Publisher { get }
+    var segmentViewModels: [SegmentViewModel] { get }
+    var dataSheetViewModel: DataSheetViewModel? { get }
+    var cardViewModels: [CardViewModel] { get }
 
     func getMovie()
     func tapFavorite()
+    func didSelect(recommended index: Int)
 }
 
 final class DetailsViewModel {
@@ -29,12 +33,19 @@ final class DetailsViewModel {
     enum Result {
 
         case error(String)
+        case recommended(Int)
     }
 
     struct Dependencies {
 
-        weak var navigation: DetailsViewDelegate?
+        weak var navigation: DetailsNavigationDelegate?
         let repository: DetailsRepositoryProtocol
+    }
+
+    // MARK: Constants
+    private enum Constants {
+        static let acting = "Acting"
+        static let director = "Director"
     }
 
     // MARK: Properties
@@ -42,6 +53,8 @@ final class DetailsViewModel {
     private var cancellables = Set<AnyCancellable>()
     @Published private var loading: Bool = false
     @Published private var headerViewModel: HeaderViewModel?
+    private (set) var dataSheetViewModel: DataSheetViewModel?
+    private (set) var cardViewModels: [CardViewModel] = []
     private var movie: Movie?
 
     init(dependencies: Dependencies) {
@@ -67,12 +80,48 @@ final class DetailsViewModel {
                                           title: result.title,
                                           description: result.overview,
                                           favorited: dependencies.repository.favorited)
+        dataSheetViewModel = DataSheetViewModel(title: TranslationKeys.datasheet.localized,
+                                                description: buildContent(result))
+        cardViewModels = createCards(result.recommendations?.results)
+        loading = false
+    }
+
+    private func createCards(_ results: [Movie]?) -> [CardViewModel] {
+        guard let results else { return [] }
+        return results.enumerated().compactMap { (index, item) in
+            CardViewModel(image: item.posterPath, index: index)
+        }
+    }
+
+    private func buildContent(_ movie: Movie) -> String {
+
+        let genres = movie.genres?.compactMap { $0.name }.joined(separator: ", ")
+        let countries = movie.productionCountries?.compactMap { $0.name }.joined(separator: ", ")
+        let actors = movie.credits?.cast?
+            .filter { $0.knownForDepartment == Constants.acting }
+            .compactMap { $0.name }.joined(separator: ", ")
+        let director = movie.credits?.crew?
+            .filter { $0.job == Constants.director }
+            .compactMap { $0.name }.joined(separator: ", ")
+
+        return """
+\(TranslationKeys.originalTitle.localized): \(movie.originalTitle.unwrapped)
+\(TranslationKeys.genre.localized): \(genres.unwrapped)
+\(TranslationKeys.productionYear.localized): \(movie.releaseDate.unwrapped)
+\(TranslationKeys.country.localized): \(countries.unwrapped)
+\(TranslationKeys.director.localized): \(director.unwrapped)
+\(TranslationKeys.actors.localized): \(actors.unwrapped)
+"""
     }
 }
 
 // MARK: - DetailsViewModelProtocol
 extension DetailsViewModel: DetailsViewModelProtocol {
 
+    var segmentViewModels: [SegmentViewModel] {
+        [SegmentViewModel(title: TranslationKeys.details.uppercased(), index: 0),
+         SegmentViewModel(title: TranslationKeys.recommendations.uppercased(), index: 1)]
+    }
     var loadingPublisher: Published<Bool>.Publisher { $loading }
     var headerPublisher: Published<HeaderViewModel?>.Publisher { $headerViewModel }
 
@@ -85,7 +134,6 @@ extension DetailsViewModel: DetailsViewModelProtocol {
                 self?.loading = false
                 self?.handle(completion)
             }, receiveValue: { [weak self] response in
-                self?.loading = false
                 self?.handle(response)
             })
             .store(in: &cancellables)
@@ -95,5 +143,11 @@ extension DetailsViewModel: DetailsViewModelProtocol {
 
         dependencies.repository.tapFavorite(posterPath: movie?.posterPath ?? "")
         headerViewModel?.changeState(favorited: dependencies.repository.favorited)
+    }
+
+    func didSelect(recommended index: Int) {
+
+        guard let recommended = movie?.recommendations?.results?[safe: index] else { return }
+        dependencies.navigation?.details(didFinish: .recommended(recommended.id))
     }
 }

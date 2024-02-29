@@ -82,8 +82,8 @@ final class HeaderView: UIView {
         self.delegate = delegate
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
-        posterImageView.sd_setImage(with: URL(string: Environment.baseImageUrl.absoluteString + viewModel.image),
-                              placeholderImage: UIImage(named: Images.placeholder))
+        let url = URL(string: Environment.baseImageUrl.absoluteString + viewModel.image.unwrapped)
+        posterImageView.sd_setImage(with: url, placeholderImage: UIImage(named: Images.placeholder))
         changeFavorite(favorited: viewModel.favorited)
         configure(genres: viewModel.genres)
     }
@@ -109,15 +109,7 @@ final class HeaderView: UIView {
     @IBAction private func actionWatch(_ sender: UIButton) {
         delegate?.didTapWatch()
     }
-
-    private func loadNib() {
-
-        let nibName = String(describing: type(of: self))
-        let nib = UINib(nibName: nibName, bundle: .main)
-        guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-        view.backgroundColor = .clear
-        view.frame = self.bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        addSubview(view)
-    }
 }
+
+// MARK: NibLoadable
+extension HeaderView: NibLoadable {}

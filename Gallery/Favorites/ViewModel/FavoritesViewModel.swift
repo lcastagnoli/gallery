@@ -9,16 +9,28 @@ import Foundation
 import Persistence
 import UI
 
+protocol FavoritesNavigationDelegate: AnyObject {
+
+    func favorites(didFinish result: FavoritesViewModel.Result)
+}
+
 protocol FavoritesViewModelProtocol {
 
     var itemsPublisher: Published<[CardViewModel]>.Publisher { get }
     func getFavoriteMovies()
+    func didSelect(index: Int)
 }
 
 final class FavoritesViewModel {
 
+    enum Result {
+
+        case details(Int)
+    }
+
     struct Dependencies {
 
+        weak var navigation: FavoritesNavigationDelegate?
         let persistence: PersistenceManagerProtocol
     }
 
@@ -26,6 +38,7 @@ final class FavoritesViewModel {
     private let dependencies: Dependencies
     private let group = DispatchGroup()
     @Published private var items: [CardViewModel] = []
+    private var movies: [PersistedMovie] = []
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
@@ -39,12 +52,20 @@ extension FavoritesViewModel: FavoritesViewModelProtocol {
 
     func getFavoriteMovies() {
 
-        guard let movies = dependencies.persistence.get(type: PersistedMovie.self) else { return }
-        var images: [CardViewModel] = []
-        for (index, movie) in movies.enumerated() {
+        items = createCards()
+    }
 
-            images.append(CardViewModel(image: movie.posterPath, index: index))
+    private func createCards() -> [CardViewModel] {
+        guard let movies = dependencies.persistence.get(type: PersistedMovie.self) else { return [] }
+        self.movies = Array(movies)
+        return movies.enumerated().compactMap { (index, item) in
+            CardViewModel(image: item.posterPath, index: index)
         }
-        items = images
+    }
+
+    func didSelect(index: Int) {
+
+        guard let movieId = movies[safe: index]?.id else { return }
+        dependencies.navigation?.favorites(didFinish: .details(movieId))
     }
 }

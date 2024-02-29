@@ -10,8 +10,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsViewController" customModule="Gallery" customModuleProvider="target">
             <connections>
+                <outlet property="dataSheetView" destination="hRa-Lu-W9n" id="sPr-hx-Jct"/>
                 <outlet property="headerView" destination="l3L-y7-fYf" id="4zf-YS-pTn"/>
+                <outlet property="recommendationsCollectionView" destination="fHz-No-noP" id="6E2-Qt-j5X"/>
+                <outlet property="recommendationsHeight" destination="eUS-yP-GZR" id="R9h-xO-PJU"/>
                 <outlet property="scrollView" destination="qli-Za-vdZ" id="fDn-Kb-VEV"/>
+                <outlet property="segmentView" destination="WsH-wo-vWh" id="oe8-UC-1Pd"/>
                 <outlet property="stackView" destination="3Yu-BQ-Qt1" id="Ttx-HT-8hf"/>
                 <outlet property="view" destination="iN0-l3-epB" id="DPA-rr-0Xe"/>
             </connections>
@@ -25,16 +29,40 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qli-Za-vdZ">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qli-Za-vdZ">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="3Yu-BQ-Qt1">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="400"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="500"/>
                             <subviews>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="400" translatesAutoresizingMaskIntoConstraints="NO" id="l3L-y7-fYf" customClass="HeaderView" customModule="Gallery" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="400"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="WsH-wo-vWh" customClass="SegmentView" customModule="UI">
+                                    <rect key="frame" x="0.0" y="400" width="393" height="50"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="Li4-TE-hDO"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRa-Lu-W9n" customClass="DataSheetView" customModule="Gallery" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="450" width="393" height="50"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="393" placeholderIntrinsicHeight="128" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fHz-No-noP">
+                                    <rect key="frame" x="0.0" y="500" width="393" height="100"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="eUS-yP-GZR"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HYo-nu-zmg">
+                                        <size key="itemSize" width="128" height="128"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -66,7 +94,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Fwf-Hc-wBn" secondAttribute="bottom" id="nYL-OA-uoz"/>
                 <constraint firstItem="Fwf-Hc-wBn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uQr-2o-R95"/>
             </constraints>
-            <point key="canvasLocation" x="-85" y="20"/>
+            <point key="canvasLocation" x="-86.25954198473282" y="19.718309859154932"/>
         </view>
     </objects>
 </document>

@@ -8,8 +8,13 @@
 import UIKit
 import UI
 
+protocol FavoritesViewDelegate: AnyObject {
+    func didSelect(view: FavoritesView, index: Int)
+}
+
 final class FavoritesView: UIView {
 
+    // MARK: Constants
     private enum Constants {
         static let spacingItems = 20.0
         static let height = 150.0
@@ -26,6 +31,7 @@ final class FavoritesView: UIView {
     }()
 
     private var viewModels: [CardViewModel] = []
+    private weak var delegate: FavoritesViewDelegate?
 
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -37,8 +43,9 @@ final class FavoritesView: UIView {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     // MARK: Methods
-    public func setup(with viewModels: [CardViewModel]) {
+    public func setup(with viewModels: [CardViewModel], delegate: FavoritesViewDelegate?) {
 
+        self.delegate = delegate
         self.viewModels = viewModels
         collectionView.reloadData()
     }
@@ -67,9 +74,6 @@ final class FavoritesView: UIView {
 // MARK: - UICollectionViewDataSource
 extension FavoritesView: UICollectionViewDataSource {
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModels.count
     }
@@ -102,5 +106,13 @@ extension FavoritesView: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (frame.width - Constants.spacingItems*3)/3
         return CGSize(width: width, height: Constants.height)
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension FavoritesView: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelect(view: self, index: indexPath.item)
     }
 }

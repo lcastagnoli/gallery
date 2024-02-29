@@ -18,14 +18,16 @@ public struct Movie: Decodable {
     public let id: Int
     public let imdbID, originalLanguage, originalTitle, overview: String?
     public let popularity: Double?
-    public let posterPath: String
-    public let productionCompanies: [ProductionCompany]?
+    public let posterPath: String?
     public let releaseDate: String?
     public let revenue, runtime: Int?
     public let status, tagline, title: String?
     public let video: Bool?
     public let voteAverage: Double?
     public let voteCount: Int?
+    public let recommendations: Response?
+    public let productionCountries: [ProductionCountry]?
+    public let credits: Credits?
 
     enum CodingKeys: String, CodingKey {
         case adult
@@ -36,11 +38,13 @@ public struct Movie: Decodable {
         case originalTitle = "original_title"
         case overview, popularity
         case posterPath = "poster_path"
-        case productionCompanies = "production_companies"
         case releaseDate = "release_date"
         case revenue, runtime
         case status, tagline, title, video
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+        case recommendations
+        case productionCountries = "production_countries"
+        case credits
     }
 }

@@ -80,7 +80,8 @@ final class ListViewModel {
                                                    index: 3)])
     }
 
-    private func createCardsBySection(_ results: [Network.Movie]) -> [CardViewModel] {
+    private func createCardsBySection(_ results: [Network.Movie]?) -> [CardViewModel] {
+        guard let results else { return [] }
         return results.enumerated().compactMap { (index, item) in
             CardViewModel(image: item.posterPath, index: index)
         }
@@ -118,7 +119,7 @@ extension ListViewModel: ListViewModelProtocol {
 
     func details(section: Int, index: Int) {
 
-        guard let movie = sections[safe: section]?.results[index] else { return }
+        guard let movie = sections[safe: section]?.results?[index] else { return }
         dependencies.navigation?.list(didFinish: .details(movie.id))
     }
 }
