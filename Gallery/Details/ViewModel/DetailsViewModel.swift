@@ -49,6 +49,9 @@ final class DetailsViewModel {
         static let acting = "Acting"
         static let director = "Director"
         static let youtube = "YouTube"
+        static let dateFormat = "yyyy-MM-dd"
+        static let comma = ", "
+        static let line = "\n"
     }
 
     // MARK: Properties
@@ -99,25 +102,33 @@ final class DetailsViewModel {
         }
     }
 
+    private func formatDate(_ date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.dateFormat
+        guard let date = dateFormatter.date(from: date) else { return ""}
+        let year = Calendar.current.component(.year, from: date)
+        return "\(year)"
+    }
+
     private func buildContent(_ movie: Movie) -> String {
 
-        let genres = movie.genres?.compactMap { $0.name }.joined(separator: ", ")
-        let countries = movie.productionCountries?.compactMap { $0.name }.joined(separator: ", ")
+        let genres = movie.genres?.compactMap { $0.name }.joined(separator: Constants.comma)
+        let countries = movie.productionCountries?.compactMap { $0.name }.joined(separator: Constants.comma)
         let actors = movie.credits?.cast?
             .filter { $0.knownForDepartment == Constants.acting }
-            .compactMap { $0.name }.joined(separator: ", ")
+            .compactMap { $0.name }.joined(separator: Constants.comma)
         let director = movie.credits?.crew?
             .filter { $0.job == Constants.director }
-            .compactMap { $0.name }.joined(separator: ", ")
+            .compactMap { $0.name }.joined(separator: Constants.comma)
 
-        return """
-\(TranslationKeys.originalTitle.localized): \(movie.originalTitle.unwrapped)
-\(TranslationKeys.genre.localized): \(genres.unwrapped)
-\(TranslationKeys.productionYear.localized): \(movie.releaseDate.unwrapped)
-\(TranslationKeys.country.localized): \(countries.unwrapped)
-\(TranslationKeys.director.localized): \(director.unwrapped)
-\(TranslationKeys.actors.localized): \(actors.unwrapped)
-"""
+        return [
+            "\(TranslationKeys.originalTitle.localized): \(movie.originalTitle.unwrapped)",
+            "\(TranslationKeys.genre.localized): \(genres.unwrapped)",
+            "\(TranslationKeys.productionYear.localized): \(formatDate(movie.releaseDate.unwrapped))",
+            "\(TranslationKeys.country.localized): \(countries.unwrapped)",
+            "\(TranslationKeys.director.localized): \(director.unwrapped)",
+            "\(TranslationKeys.actors.localized): \(actors.unwrapped)"
+        ].joined(separator: Constants.line)
     }
 }
 
