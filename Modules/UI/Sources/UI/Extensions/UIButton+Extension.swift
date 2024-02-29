@@ -103,6 +103,7 @@ extension UIButton: Styleable {
         clipsToBounds = style.cornerRadius > .zero
         layer.borderColor = style.borderColor.cgColor
         layer.borderWidth = style.borderWidth
+        tintColor = style.textColor
     }
 
     public convenience init(style: Style) {

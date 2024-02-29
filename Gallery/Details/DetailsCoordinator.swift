@@ -10,6 +10,7 @@ import Navigation
 import UIKit
 import Network
 import Persistence
+import AVKit
 
 protocol DetailsCoordinatorDelegate: AnyObject {
 
@@ -54,6 +55,17 @@ extension DetailsCoordinator {
     func start() {
         setRoot(detailsViewController)
     }
+
+    private func openPlayer(_ url: URL) {
+
+        let navigation = UINavigationController(barStyle: .black)
+        let coordinator = PlayerCoordinator(navigation: navigation, url: url)
+        let closeButton: UIBarButtonItem = .custom(icon: Images.back) { [weak self, weak coordinator] in
+            guard let self = self, let coordinator = coordinator else { return }
+            self.dismiss(coordinator)
+        }
+        present(coordinator, transition: .coverVertical, backButton: closeButton)
+    }
 }
 
 // MARK: - DetailsNavigationDelegate
@@ -63,7 +75,8 @@ extension DetailsCoordinator: DetailsNavigationDelegate {
         switch result {
         case let .recommended(id):
             delegate?.didFinish(coordinator: self, result: .recommended(id))
-        default: break
+        case let .watch(url):
+            openPlayer(url)
         }
     }
 }

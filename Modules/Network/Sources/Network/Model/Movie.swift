@@ -28,6 +28,7 @@ public struct Movie: Decodable {
     public let recommendations: Response?
     public let productionCountries: [ProductionCountry]?
     public let credits: Credits?
+    public let videos: Videos?
 
     enum CodingKeys: String, CodingKey {
         case adult
@@ -46,5 +47,6 @@ public struct Movie: Decodable {
         case recommendations
         case productionCountries = "production_countries"
         case credits
+        case videos
     }
 }

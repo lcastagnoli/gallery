@@ -100,7 +100,7 @@ final class DetailsViewController: UIViewController {
             configureViews()
         }
     }
-    
+
     public func show(error viewModel: ErrorViewModel) {
         errorView.setup(with: viewModel)
         errorView.isHidden = false
@@ -127,7 +127,10 @@ final class DetailsViewController: UIViewController {
 // MARK: - HeaderViewDelegate
 extension DetailsViewController: HeaderViewDelegate {
 
-    func didTapWatch() { }
+    func didTapWatch() {
+
+        viewModel.watch()
+    }
 
     func didTapFavorite() {
 

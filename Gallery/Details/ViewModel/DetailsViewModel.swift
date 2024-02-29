@@ -27,6 +27,7 @@ protocol DetailsViewModelProtocol {
     func getMovie()
     func tapFavorite()
     func didSelect(recommended index: Int)
+    func watch()
 }
 
 final class DetailsViewModel {
@@ -34,6 +35,7 @@ final class DetailsViewModel {
     enum Result {
 
         case recommended(Int)
+        case watch(URL)
     }
 
     struct Dependencies {
@@ -46,6 +48,7 @@ final class DetailsViewModel {
     private enum Constants {
         static let acting = "Acting"
         static let director = "Director"
+        static let youtube = "YouTube"
     }
 
     // MARK: Properties
@@ -120,8 +123,8 @@ final class DetailsViewModel {
 extension DetailsViewModel: DetailsViewModelProtocol {
 
     var segmentViewModels: [SegmentViewModel] {
-        [SegmentViewModel(title: TranslationKeys.details.uppercased(), index: 0),
-         SegmentViewModel(title: TranslationKeys.recommendations.uppercased(), index: 1)]
+        [SegmentViewModel(title: TranslationKeys.details.localized.uppercased(), index: 0),
+         SegmentViewModel(title: TranslationKeys.recommendations.localized.uppercased(), index: 1)]
     }
     var loadingPublisher: Published<Bool>.Publisher { $loading }
     var headerPublisher: Published<HeaderViewModel?>.Publisher { $headerViewModel }
@@ -151,5 +154,13 @@ extension DetailsViewModel: DetailsViewModelProtocol {
 
         guard let recommended = movie?.recommendations?.results?[safe: index] else { return }
         dependencies.navigation?.details(didFinish: .recommended(recommended.id))
+    }
+
+    func watch() {
+
+        guard let video = movie?.videos?.results?.last(where: { $0.site == Constants.youtube }),
+              let videoUrl = URL(string: "\(Environment.youtubeUrl)\(video.key.unwrapped)") else { return }
+
+        dependencies.navigation?.details(didFinish: .watch(videoUrl))
     }
 }

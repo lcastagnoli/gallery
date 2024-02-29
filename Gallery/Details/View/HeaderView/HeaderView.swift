@@ -63,6 +63,7 @@ final class HeaderView: UIView {
         genresStackView.distribution = .fillProportionally
         watchButton.style(as: .play)
         favoriteButton.style(as: .favorite)
+        watchButton.setImage(UIImage(named: Images.play), for: .normal)
         watchButton.setTitle(TranslationKeys.buttonPlay.localized, for: .normal)
         let darkOverlay = UIView(frame: CGRect(origin: .zero, size: posterImageView.frame.size))
         darkOverlay.backgroundColor = UIColor.black.withAlphaComponent(Constants.overlayAlpha)
@@ -74,7 +75,9 @@ final class HeaderView: UIView {
         let title = favorited ?
         TranslationKeys.buttonFavoriteChecked.localized :
         TranslationKeys.buttonFavoriteUnchecked.localized
+        let image = favorited ? Images.star : Images.check
         favoriteButton.setTitle(title, for: .normal)
+        favoriteButton.setImage(UIImage(named: image), for: .normal)
     }
 
     func setup(with viewModel: HeaderViewModel, delegate: HeaderViewDelegate?) {

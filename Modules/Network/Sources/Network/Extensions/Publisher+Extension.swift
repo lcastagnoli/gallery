@@ -11,8 +11,7 @@ import Foundation
 extension Publisher {
 
     typealias OutputData = (data: Data, response: URLResponse)
-    func decodeResponse<Item, Coder>(type: Item.Type,
-                                     decoder: Coder) -> Publishers.Decode<Publishers.TryMap<Self, Data>, Item, Coder> where Coder: TopLevelDecoder,  Self.Output == OutputData {
+    func decodeResponse<Item, Coder>(type: Item.Type, decoder: Coder) -> Publishers.Decode<Publishers.TryMap<Self, Data>, Item, Coder> where Coder: TopLevelDecoder, Self.Output == OutputData {
 
         return self
             .tryMap { output in
