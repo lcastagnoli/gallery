@@ -65,6 +65,7 @@ final class HeaderView: UIView {
         favoriteButton.style(as: .favorite)
         watchButton.setImage(UIImage(named: Images.play), for: .normal)
         watchButton.setTitle(TranslationKeys.buttonPlay.localized, for: .normal)
+        watchButton.setTitle(TranslationKeys.unavailable.localized, for: .disabled)
         let darkOverlay = UIView(frame: CGRect(origin: .zero, size: posterImageView.frame.size))
         darkOverlay.backgroundColor = UIColor.black.withAlphaComponent(Constants.overlayAlpha)
         posterImageView.addSubview(darkOverlay)
@@ -85,6 +86,7 @@ final class HeaderView: UIView {
         self.delegate = delegate
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
+        watchButton.isEnabled = viewModel.hasVideo
         let url = URL(string: Environment.baseImageUrl.absoluteString + viewModel.image.unwrapped)
         posterImageView.sd_setImage(with: url, placeholderImage: UIImage(named: Images.placeholder))
         changeFavorite(favorited: viewModel.favorited)

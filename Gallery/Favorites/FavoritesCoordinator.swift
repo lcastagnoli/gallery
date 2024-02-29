@@ -28,6 +28,7 @@ final class FavoritesCoordinator: NavigationRoutable {
     }
 }
 
+// MARK: - Coordinator
 extension FavoritesCoordinator {
 
     func start() {

@@ -30,6 +30,7 @@ final class PlayerCoordinator: NavigationRoutable {
     }
 }
 
+// MARK: - Coordinator
 extension PlayerCoordinator {
 
     func start() {

@@ -79,11 +79,13 @@ final class DetailsViewModel {
 
         movie = result
         let genres = result.genres?.compactMap { $0.name }
+        let hasVideo = movie?.videos?.results?.first(where: { $0.site == Constants.youtube }) != nil
         headerViewModel = HeaderViewModel(image: result.posterPath,
                                           genres: genres,
                                           title: result.title,
                                           description: result.overview,
-                                          favorited: dependencies.repository.favorited)
+                                          favorited: dependencies.repository.favorited,
+                                          hasVideo: hasVideo)
         dataSheetViewModel = DataSheetViewModel(title: TranslationKeys.datasheet.localized,
                                                 description: buildContent(result))
         cardViewModels = createCards(result.recommendations?.results)
@@ -158,7 +160,7 @@ extension DetailsViewModel: DetailsViewModelProtocol {
 
     func watch() {
 
-        guard let video = movie?.videos?.results?.last(where: { $0.site == Constants.youtube }),
+        guard let video = movie?.videos?.results?.first(where: { $0.site == Constants.youtube }),
               let videoUrl = URL(string: "\(Environment.youtubeUrl)\(video.key.unwrapped)") else { return }
 
         dependencies.navigation?.details(didFinish: .watch(videoUrl))

@@ -32,7 +32,7 @@ final class DetailsRepository {
     }
 }
 
-// MARK: - ListRepositoryProtocol
+// MARK: - DetailsRepositoryProtocol
 extension DetailsRepository: DetailsRepositoryProtocol {
 
     var favorited: Bool { persistence.contains(type: PersistedMovie.self, id: movieId) }

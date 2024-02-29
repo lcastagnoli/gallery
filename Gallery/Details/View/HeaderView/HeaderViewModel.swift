@@ -12,17 +12,20 @@ struct HeaderViewModel {
     private (set) var title: String?
     private (set) var description: String?
     private (set) var favorited: Bool
+    private (set) var hasVideo: Bool
 
     init(image: String? = nil,
          genres: [String]? = nil,
          title: String? = nil,
          description: String? = nil,
-         favorited: Bool = false) {
+         favorited: Bool = false,
+         hasVideo: Bool = false) {
         self.image = image
         self.genres = genres
         self.title = title
         self.description = description
         self.favorited = favorited
+        self.hasVideo = hasVideo
     }
 
     public mutating func changeState(favorited: Bool) {

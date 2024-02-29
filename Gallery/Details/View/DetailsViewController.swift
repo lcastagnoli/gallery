@@ -148,6 +148,7 @@ extension DetailsViewController: SegmentViewDelegate {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension DetailsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

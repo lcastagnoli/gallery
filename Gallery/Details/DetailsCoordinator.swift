@@ -50,6 +50,7 @@ final class DetailsCoordinator: NavigationRoutable {
     }
 }
 
+// MARK: - Coordinator
 extension DetailsCoordinator {
 
     func start() {

@@ -26,7 +26,7 @@ final class PlayerViewModel {
     }
 }
 
-// MARK: - FavoritesViewModelProtocol
+// MARK: - PlayerViewModelProtocol
 extension PlayerViewModel: PlayerViewModelProtocol {
 
     var videoUrl: URL { dependencies.url }
