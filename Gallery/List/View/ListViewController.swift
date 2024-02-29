@@ -47,6 +47,13 @@ final class ListViewController: UIViewController {
                 self?.customView.setup(with: value, delegate: self)
             }
             .store(in: &cancellables)
+
+        viewModel.errorPublisher
+            .sink { [weak self] value in
+                guard let value else { return }
+                self?.customView.show(error: value)
+            }
+            .store(in: &cancellables)
     }
 }
 

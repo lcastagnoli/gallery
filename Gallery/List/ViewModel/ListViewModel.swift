@@ -20,6 +20,7 @@ protocol ListViewModelProtocol {
 
     var loadingPublisher: Published<Bool>.Publisher { get }
     var itemsPublisher: Published<[SectionViewModel]>.Publisher { get }
+    var errorPublisher: Published<ErrorViewModel?>.Publisher { get }
     func getMovies()
     func details(section: Int, index: Int)
 }
@@ -29,7 +30,6 @@ final class ListViewModel {
     enum Result {
 
         case details(Int)
-        case error(String)
     }
 
     struct Dependencies {
@@ -44,6 +44,7 @@ final class ListViewModel {
     private let group = DispatchGroup()
     @Published private var loading: Bool = false
     @Published private var items: [SectionViewModel] = []
+    @Published private var error: ErrorViewModel?
     private var sections: [Response] = []
 
     init(dependencies: Dependencies) {
@@ -54,7 +55,7 @@ final class ListViewModel {
     private func handle(_ completion: Subscribers.Completion<Error>) {
         switch completion {
         case .failure(let error):
-            dependencies.navigation?.list(didFinish: .error(error.localizedDescription))
+            self.error = ErrorViewModel(title: TranslationKeys.error.localized, text: error.localizedDescription)
         case .finished:
             break
         }
@@ -91,6 +92,7 @@ final class ListViewModel {
 // MARK: - ListViewModelProtocol
 extension ListViewModel: ListViewModelProtocol {
 
+    var errorPublisher: Published<ErrorViewModel?>.Publisher { $error }
     var loadingPublisher: Published<Bool>.Publisher { $loading }
     var itemsPublisher: Published<[SectionViewModel]>.Publisher { $items }
 

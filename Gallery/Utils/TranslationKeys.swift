@@ -27,4 +27,5 @@ enum TranslationKeys {
     static let director = "director"
     static let genre = "genre"
     static let productionYear = "productionYear"
+    static let error = "error"
 }

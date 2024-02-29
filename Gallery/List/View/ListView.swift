@@ -52,6 +52,13 @@ final class ListView: UIView {
         return scrollView
     }()
 
+    lazy var errorView: ErrorView = {
+        let errorView = ErrorView()
+        errorView.isHidden = true
+        addSubview(errorView)
+        return errorView
+    }()
+
     private weak var delegate: ListViewDelegate?
 
     // MARK: Initializers
@@ -86,6 +93,12 @@ final class ListView: UIView {
         }
     }
 
+    public func show(error viewModel: ErrorViewModel) {
+        errorView.setup(with: viewModel)
+        errorView.isHidden = false
+        scrollView.isHidden = true
+    }
+
     private func createSection(with viewModel: SectionViewModel) {
 
         let section = SectionView()
@@ -110,6 +123,7 @@ final class ListView: UIView {
         loader.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        errorView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
@@ -124,7 +138,12 @@ final class ListView: UIView {
             stackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
 
             loader.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            loader.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            loader.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+
+            errorView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            errorView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

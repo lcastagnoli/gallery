@@ -11,7 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsViewController" customModule="Gallery" customModuleProvider="target">
             <connections>
                 <outlet property="dataSheetView" destination="hRa-Lu-W9n" id="sPr-hx-Jct"/>
+                <outlet property="errorView" destination="qZV-LL-dkq" id="j24-Kz-Mtg"/>
                 <outlet property="headerView" destination="l3L-y7-fYf" id="4zf-YS-pTn"/>
+                <outlet property="loader" destination="k43-AB-tLp" id="dGw-jw-wOw"/>
                 <outlet property="recommendationsCollectionView" destination="fHz-No-noP" id="6E2-Qt-j5X"/>
                 <outlet property="recommendationsHeight" destination="eUS-yP-GZR" id="R9h-xO-PJU"/>
                 <outlet property="scrollView" destination="qli-Za-vdZ" id="fDn-Kb-VEV"/>
@@ -29,6 +31,9 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="k43-AB-tLp">
+                    <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                </activityIndicatorView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qli-Za-vdZ">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                     <subviews>
@@ -81,17 +86,27 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="HJJ-m4-5Ep"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="Mpo-rZ-6zH"/>
                 </scrollView>
+                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZV-LL-dkq" customClass="ErrorView" customModule="UI">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="qli-Za-vdZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1Qo-Jb-MSz"/>
+                <constraint firstItem="qZV-LL-dkq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="5UE-Qh-4hO"/>
+                <constraint firstItem="k43-AB-tLp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="AEO-P5-7yc"/>
                 <constraint firstItem="qli-Za-vdZ" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Bmq-Bv-muj"/>
                 <constraint firstItem="qli-Za-vdZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Cjs-Ph-BjI"/>
                 <constraint firstItem="qli-Za-vdZ" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="L6K-br-LY7"/>
+                <constraint firstItem="k43-AB-tLp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="RU4-ET-32z"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qZV-LL-dkq" secondAttribute="bottom" id="TdL-l0-dcK"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Fwf-Hc-wBn" secondAttribute="trailing" id="Tfg-PI-IGd"/>
                 <constraint firstItem="Fwf-Hc-wBn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XgC-pv-sX5"/>
+                <constraint firstItem="qZV-LL-dkq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="i9q-UF-Cmw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Fwf-Hc-wBn" secondAttribute="bottom" id="nYL-OA-uoz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qZV-LL-dkq" secondAttribute="trailing" id="qhP-je-Yho"/>
                 <constraint firstItem="Fwf-Hc-wBn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uQr-2o-R95"/>
             </constraints>
             <point key="canvasLocation" x="-86.25954198473282" y="19.718309859154932"/>

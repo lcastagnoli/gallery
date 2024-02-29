@@ -18,6 +18,7 @@ protocol DetailsNavigationDelegate: AnyObject {
 protocol DetailsViewModelProtocol {
 
     var loadingPublisher: Published<Bool>.Publisher { get }
+    var errorPublisher: Published<ErrorViewModel?>.Publisher { get }
     var headerPublisher: Published<HeaderViewModel?>.Publisher { get }
     var segmentViewModels: [SegmentViewModel] { get }
     var dataSheetViewModel: DataSheetViewModel? { get }
@@ -32,7 +33,6 @@ final class DetailsViewModel {
 
     enum Result {
 
-        case error(String)
         case recommended(Int)
     }
 
@@ -52,6 +52,7 @@ final class DetailsViewModel {
     private let dependencies: Dependencies
     private var cancellables = Set<AnyCancellable>()
     @Published private var loading: Bool = false
+    @Published private var error: ErrorViewModel?
     @Published private var headerViewModel: HeaderViewModel?
     private (set) var dataSheetViewModel: DataSheetViewModel?
     private (set) var cardViewModels: [CardViewModel] = []
@@ -65,7 +66,7 @@ final class DetailsViewModel {
     private func handle(_ completion: Subscribers.Completion<Error>) {
         switch completion {
         case .failure(let error):
-            dependencies.navigation?.details(didFinish: .error(error.localizedDescription))
+            self.error = ErrorViewModel(title: TranslationKeys.error.localized, text: error.localizedDescription)
         case .finished:
             break
         }
@@ -124,6 +125,7 @@ extension DetailsViewModel: DetailsViewModelProtocol {
     }
     var loadingPublisher: Published<Bool>.Publisher { $loading }
     var headerPublisher: Published<HeaderViewModel?>.Publisher { $headerViewModel }
+    var errorPublisher: Published<ErrorViewModel?>.Publisher { $error }
 
     func getMovie() {
 

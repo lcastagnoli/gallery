@@ -7,5 +7,6 @@
 
 public enum Images {
 
-    static let placeholder = "placeholder"
+    public static let placeholder = "placeholder"
+    public static let error = "error"
 }

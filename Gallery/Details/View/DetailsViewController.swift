@@ -25,6 +25,8 @@ final class DetailsViewController: UIViewController {
     @IBOutlet private weak var recommendationsCollectionView: UICollectionView!
     @IBOutlet private weak var dataSheetView: DataSheetView!
     @IBOutlet private weak var recommendationsHeight: NSLayoutConstraint!
+    @IBOutlet private weak var errorView: ErrorView!
+    @IBOutlet private weak var loader: UIActivityIndicatorView!
 
     // MARK: Properties
     private let viewModel: DetailsViewModelProtocol
@@ -47,12 +49,22 @@ final class DetailsViewController: UIViewController {
         super.viewDidLoad()
 
         viewModel.getMovie()
-        segmentView.setup(with: viewModel.segmentViewModels, delegate: self)
-        configureCollection()
+        setupViews()
+        bindViews()
+    }
+
+    // MARK: Methods
+    private func bindViews() {
+
         viewModel.loadingPublisher
             .sink { [weak self] value in
-                guard !value else { return }
-                self?.configureViews()
+                self?.loading(animated: value)
+            }
+            .store(in: &cancellables)
+        viewModel.errorPublisher
+            .sink { [weak self] value in
+                guard let value else { return }
+                self?.show(error: value)
             }
             .store(in: &cancellables)
         viewModel.headerPublisher
@@ -63,14 +75,38 @@ final class DetailsViewController: UIViewController {
             .store(in: &cancellables)
     }
 
-    // MARK: Methods
-    private func configureCollection() {
+    private func setupViews() {
 
+        loader.color = .white
+        errorView.backgroundColor = .black
+        segmentView.setup(with: viewModel.segmentViewModels, delegate: self)
         recommendationsCollectionView.dataSource = self
         recommendationsCollectionView.delegate = self
         recommendationsCollectionView.backgroundColor = .blackGrey
         recommendationsCollectionView.register(class: CollectionCell<CardView>.self)
     }
+
+    public func loading(animated: Bool) {
+
+        loader.isHidden = !animated
+        scrollView.isHidden = animated
+        stackView.isHidden = animated
+        errorView.isHidden = true
+        switch animated {
+        case true:
+            loader.startAnimating()
+        case false:
+            loader.stopAnimating()
+            configureViews()
+        }
+    }
+    
+    public func show(error viewModel: ErrorViewModel) {
+        errorView.setup(with: viewModel)
+        errorView.isHidden = false
+        scrollView.isHidden = true
+    }
+
     private func configureViews() {
 
         guard let dataSheetViewModel = viewModel.dataSheetViewModel else { return }
@@ -114,6 +150,7 @@ extension DetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.cardViewModels.count
     }
+
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 

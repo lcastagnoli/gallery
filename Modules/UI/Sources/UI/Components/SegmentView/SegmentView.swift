@@ -14,13 +14,14 @@ public protocol SegmentViewDelegate: AnyObject {
 
 public final class SegmentView: UIView {
 
-    // MARK: Properties
+    // MARK: IBOutlets
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var widthConstraintLine: NSLayoutConstraint!
     @IBOutlet private weak var leadingConstraintLine: NSLayoutConstraint!
     @IBOutlet private weak var viewIndicator: UIView!
     @IBOutlet private weak var scrollView: UIScrollView!
 
+    // MARK: Properties
     private weak var delegate: SegmentViewDelegate?
     private var viewModels: [SegmentViewModel]?
 

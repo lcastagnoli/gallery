@@ -57,8 +57,6 @@ extension ListCoordinator: ListNavigationDelegate {
         switch result {
         case .details(let id):
             openDetails(id)
-        case .error(let string):
-            break
         }
     }
 }
