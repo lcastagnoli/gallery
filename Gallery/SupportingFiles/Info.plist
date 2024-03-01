@@ -7,7 +7,7 @@
 	<key>baseImageUrl</key>
 	<string>https://image.tmdb.org/t/p/w200</string>
 	<key>accessToken</key>
-	<string>eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMDQ5N2JjNTNmY2I3OTQwZGRjZTM5ZGM1OGJkYTE2MCIsInN1YiI6IjY1ZDA5MjM2YzhmM2M0MDE3Y2VlY2JhOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IfgQ1kTkgNmNKkoUAJs-3ogBGajrNrgHL6q2o7rAqgY</string>
+	<string></string>
 	<key>baseUrl</key>
 	<string>https://api.themoviedb.org/3</string>
 	<key>UIApplicationSceneManifest</key>
