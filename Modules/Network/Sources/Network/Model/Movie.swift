@@ -21,17 +21,4 @@ public struct Movie: Decodable {
     public let credits: Credits?
     public let videos: Videos?
 
-    enum CodingKeys: String, CodingKey {
-        case genres, id
-        case originalLanguage = "original_language"
-        case originalTitle = "original_title"
-        case posterPath = "poster_path"
-        case releaseDate = "release_date"
-        case title
-        case recommendations
-        case productionCountries = "production_countries"
-        case credits
-        case videos
-        case overview
-    }
 }

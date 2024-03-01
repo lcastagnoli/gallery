@@ -19,12 +19,14 @@ public final class APIClient {
 
     // MARK: Properties
     private let session: URLSession
-    private let decoder = JSONDecoder()
+    private let decoder: JSONDecoder
 
     // MARK: Initializers
     public init(session: URLSession) {
 
         self.session = session
+        self.decoder =  JSONDecoder()
+        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
 }
 

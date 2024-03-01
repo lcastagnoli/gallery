@@ -25,9 +25,11 @@ public final class CollectionCell<View: UIView>: UICollectionViewCell {
         return view
     }()
 
-    public override func systemLayoutSizeFitting(_ targetSize: CGSize,
-                                                 withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
-                                                 verticalFittingPriority: UILayoutPriority) -> CGSize {
+    public override func systemLayoutSizeFitting(
+        _ targetSize: CGSize,
+        withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
+        verticalFittingPriority: UILayoutPriority
+    ) -> CGSize {
 
         layout(with: targetSize, verticalFittingPriority: verticalFittingPriority)
     }

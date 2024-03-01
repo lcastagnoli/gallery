@@ -7,9 +7,9 @@
 
 public final class SegmentViewModel {
 
-    let title: String
-    let selected: Bool
-    let index: Int
+    public let title: String
+    public let selected: Bool
+    public let index: Int
 
     public init(title: String, selected: Bool = false, index: Int) {
         self.title = title

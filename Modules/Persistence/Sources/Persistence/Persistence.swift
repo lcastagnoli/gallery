@@ -19,42 +19,39 @@ public protocol PersistenceManagerProtocol {
 
 public final class PersistenceManager: PersistenceManagerProtocol {
 
-    // swiftlint:disable:next force_try
-    lazy var realm = try! Realm()
+    private lazy var realm = try? Realm()
 
     public init() {}
 
     public func save<T>(_ value: T) where T: Object {
 
-        // swiftlint:disable:next force_try
-        try! realm.write {
-            realm.add(value)
+        try? realm?.write {
+            realm?.add(value)
         }
     }
 
     public func delete<T>(key: Int, as type: T.Type) where T: Object {
 
-        // swiftlint:disable:next force_try
-        try! realm.write {
-            let toDelete = realm.object(ofType: type.self, forPrimaryKey: key)
-            realm.delete(toDelete!)
+        try? realm?.write {
+            let toDelete = realm?.object(ofType: type.self, forPrimaryKey: key)
+            realm?.delete(toDelete!)
         }
     }
 
     public func get<T>(type: T.Type) -> Results<T>? where T: Object {
 
-        return realm.objects(T.self)
+        return realm?.objects(T.self)
     }
 
     public func contains<T>(type: T.Type, id: Int) -> Bool where T: Object {
 
-        return realm.objects(T.self).filter("id == %i", id).count > .zero
+        return realm?.objects(T.self).filter("id == %i", id).count ?? .zero > .zero
     }
 
     public func clear() async throws {
 
-        try await realm.asyncWrite {
-            realm.deleteAll()
+        try await realm?.asyncWrite {
+            realm?.deleteAll()
         }
     }
 }

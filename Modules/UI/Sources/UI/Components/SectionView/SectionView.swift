@@ -16,13 +16,13 @@ public protocol SectionViewDelegate: AnyObject {
 public final class SectionView: UIView {
 
     // MARK: Properties
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.style(as: .title)
         return label
     }()
 
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = Constants.spacing
@@ -32,14 +32,14 @@ public final class SectionView: UIView {
         return stackView
     }()
 
-    lazy var stackViewCards: UIStackView = {
+    private lazy var stackViewCards: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = Constants.spacing
         return stackView
     }()
 
-    lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.addSubview(stackViewCards)
         scrollView.showsHorizontalScrollIndicator = false

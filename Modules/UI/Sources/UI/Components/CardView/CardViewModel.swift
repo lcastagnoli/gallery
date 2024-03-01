@@ -7,8 +7,8 @@
 
 public final class CardViewModel {
 
-    public var image: String
-    public var index: Int
+    public let image: String
+    public let index: Int
 
     public init(image: String?, index: Int) {
         self.image = image ?? ""

@@ -23,12 +23,12 @@ public final class CardView: UIView {
     }
 
     // MARK: Properties
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    lazy var tap: UITapGestureRecognizer = {
+    private lazy var tap: UITapGestureRecognizer = {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTapCard(_:)))
         return tap
     }()

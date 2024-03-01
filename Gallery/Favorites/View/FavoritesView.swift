@@ -21,7 +21,7 @@ final class FavoritesView: UIView {
     }
 
     // MARK: Properties
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
         collectionView.dataSource = self

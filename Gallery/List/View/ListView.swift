@@ -25,13 +25,13 @@ final class ListView: UIView {
     }
 
     // MARK: Properties
-    lazy var loader: UIActivityIndicatorView = {
+    private lazy var loader: UIActivityIndicatorView = {
         let loader = UIActivityIndicatorView(style: .medium)
         loader.color = .white
         return loader
     }()
 
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -39,7 +39,7 @@ final class ListView: UIView {
         return stackView
     }()
 
-    lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.addSubview(stackView)
         scrollView.showsVerticalScrollIndicator = false
@@ -52,7 +52,7 @@ final class ListView: UIView {
         return scrollView
     }()
 
-    lazy var errorView: ErrorView = {
+    private lazy var errorView: ErrorView = {
         let errorView = ErrorView()
         errorView.isHidden = true
         addSubview(errorView)

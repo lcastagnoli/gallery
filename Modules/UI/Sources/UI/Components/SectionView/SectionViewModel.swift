@@ -7,9 +7,9 @@
 
 public final class SectionViewModel {
 
-    public var title: String
-    public var index: Int
-    public var items: [CardViewModel?]
+    public let title: String
+    public let index: Int
+    public let items: [CardViewModel?]
 
     public init(title: String, items: [CardViewModel?], index: Int) {
         self.title = title

@@ -7,8 +7,8 @@
 
 public final class ErrorViewModel {
 
-    public var title: String
-    public var text: String
+    public let title: String
+    public let text: String
 
     public init(title: String, text: String) {
         self.title = title
