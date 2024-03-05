@@ -1,5 +1,11 @@
 # Movies gallery
 
+## Description
+App about movies, using TheMovieDB API.
+Video grid with details, favorite/unfavorite, and recommendations. Play the video only parts available on YouTube, if you don't have it, the play button will be unavailable.
+
+Test inspiration https://github.com/globoi/globoplay-desafio-mobile
+
 ## Organization
 
 - MVVC-C
